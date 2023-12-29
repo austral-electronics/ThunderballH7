@@ -1,52 +1,53 @@
 # Prerequisites
 *.d
 
-# Object files
+# Compiled Object files
+*.slo
+*.lo
 *.o
-*.ko
 *.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
 
 # Precompiled Headers
 *.gch
 *.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
+# Compiled Dynamic libraries
 *.so
-*.so.*
 *.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Project
+*.code-workspace
+*.pdf
+*.mxproject
+*.cproject
+*.project
+RideHeightProcessor.launch
+STM32H743_Nucleo_ETH Debug.launch
+
+# Repertories
+.settings/
+Debug/
+build/
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
-*.i*86
-*.x86_64
-*.hex
+.settings/language.settings.xml
+.settings/stm32cubeide.project.prefs
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Specific file
+Middlewares/Third_Party/LwIP/src/apps/http/fsdata.c
+.vscode/.cortex-debug.peripherals.state.json
+.vscode/.cortex-debug.registers.state.json
