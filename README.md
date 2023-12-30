@@ -1,4 +1,4 @@
-# Thunderball H7 OEM
+# Thunderball H7 OEM -Industrial & Marine Rugged IP67 Calculator / IoT Gateway – STM32H7 Ecosystem
 
 
 ## Setup CubeMx for Ethernet option
