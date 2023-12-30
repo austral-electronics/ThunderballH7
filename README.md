@@ -3,6 +3,18 @@
 
 [![ThunderballH7](/SDK/images/Thunderball_H7_OEM.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)
 
+## Table of contents
+1. [Hardware](#hardware)
+2. [Install SDK Tools](#tools)
+2.1. [Install Visual Studio Code](#vscode)
+2.2. [Install STM32CubeMX](#cubemx)   
+8.   [Disclaimers](#disclamers)
+
+## 1. Hardware <a name="hardware"></a>
+
+**Download a PDF Hardware specifications and installation** : [Here](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
+
+
 ## Setup CubeMx for Ethernet option
 1. Create the CubeMx project and follow instruction from st:    
         https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working
@@ -104,5 +116,7 @@
 Follow instruction in the link below:
 https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
 
+## Disclaimers <a name="disclamers"></a>
+*Copyright (C) 2022 [Austral Electronics SARL](http://austral-eng.com/en/accueil-english-2/). Changes to the specifications and features in this manual may be made by Austral without prior notice. Specifications and information provided in this manual are for informational use only. Austral assumes no responsibility or liability for any errors or inaccuracies that may appear in this manual including the product & / or software. All trademarks mentioned in this manual are property of their respective owners. This product contains copyrighted software which are released under multiple open source licenses including but not limited to the GNU GPL, LGPL, and MIT BSD licenses. Such software is provided without warranty. Copies of these licenses are included in the software itself in further detail. For the latest up to date information, please visit our Github Repository at https://github.com/austral-electronics/ThunderballH7*
 
 
