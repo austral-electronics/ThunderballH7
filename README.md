@@ -12,8 +12,9 @@
 3.3. [Install Visual Studio Code](#vscode)  
 3.4. [Install STM32 Tools](#st_tools)  
 3.5. [Install the compilation toolchain](#toolchain)  
-3.6. [Install the debugger tool](#openocd)  
-4. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
+3.6. [Install the debugger tool](#openocd)
+3.7. [Setup VsCode for the debugger](#setup) 
+5. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
 4.1. [Note and requirement](#note_autotest)  
 4.2. [Change the IP Address](#ip)  
 4.3. [Modify and Compile the Web pages](#web)  
@@ -21,10 +22,10 @@
 4.5. [Debug the template using the ST-LINK/V2](#debug)  
 4.6. [Run the template using the USB Bootloader](#bootload)  
 4.7. [How to test a product with this autotest](#autotest)  
-5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
-6. [FAQ & TROUBLESHOOTING](#faq)  
+6. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
+7. [FAQ & TROUBLESHOOTING](#faq)  
 6.1. [Ethernet not working](#ethernet)  
-7.   [DISCLAIMERS](#disclamers)  
+8.   [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEET AND WIRING <a name="hardware"></a>
 
@@ -41,31 +42,31 @@ https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
 
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
 
-#### Setup vscode for flashing and debugging
+### 3.4. Install STM32 Tools <a name="st_tools"></a>
 
+### 3.5. Install the compilation toolchain <a name="toolchain"></a>
 1. Download GCC cross compiler:
     https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm
 
-2. Download make for windows (binary & depedencies):
+2. Unzip GCC cross compiler in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
+
+3. Download make for windows (binary & depedencies):
     http://gnuwin32.sourceforge.net/packages/make.htm
+   
+4. Install make for windows somewhere and add the path of make to environment variables
 
-
-3. Download OpenOCD:
+### 3.6. Install the debugger tool <a name="openocd"></a>
+1. Download OpenOCD:
     https://gnutoolchains.com/arm-eabi/openocd/
 
-4. Unzip GCC cross compiler and OpenOCD in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
+2. Unzip OpenOCD in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
 
-5. Install make for windows somewhere and add the path of make to environment variables
-
+### 3.7. Setup VsCode for the debugger <a name="setup"></a>
 6. If needed modify in the file c_cpp_properties.json the compilerPath
 7. If needed modify in the file launch.json the serverpath and gdbPath
 7. If needed modify in the makefile the openocd path and compiler path 
-
 8. make or make FLASH=Y to compile project and deploy project in the target
 
-### 3.4. Install STM32 Tools <a name="st_tools"></a>
-### 3.5. Install the compilation toolchain <a name="toolchain"></a>
-### 3.6. Install the debugger tool <a name="openocd"></a>
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
 ### 4.2. Change the IP Address <a name="ip"></a>
@@ -81,6 +82,7 @@ cd .\Middlewares\Third_Party\LwIP\src\apps\http\
 cd ../../../../../..
 ``` 
 ### 4.4. Compile the application <a name="compile"></a>
+8. make or make FLASH=Y to compile project and deploy project in the target
 ### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
