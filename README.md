@@ -8,7 +8,7 @@
 2. [Install SDK Tools](#tools)
 2.1. [Install Visual Studio Code](#vscode)
 2.2. [Install STM32CubeMX](#cubemx)   
-8.   [Disclaimers](#disclamers)
+3.   [Disclaimers](#disclamers)
 
 ## 1. Hardware <a name="hardware"></a>
 
