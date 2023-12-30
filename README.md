@@ -33,12 +33,47 @@
 
 ## 2. STM32H7 ST DOCUMENTATION <a name="st"></a>
 
+STM32 Embedded Software : https://www.st.com/en/embedded-software/stm32-embedded-software.html
+
+STM32Cube MCU Package for STM32H7 series : https://www.st.com/en/embedded-software/stm32cubeh7.html
+
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
 ### 3.1. Note and requirement <a name="note"></a>
+**Note**
+   
+Installation of the SDK for visual studio code has recently been simplified (March 2023) by the creation of a VsCode plugin for STM32. The documentation below does not take this plugin into account at present.
+
+https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795
+
+https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode
+
+https://www.youtube.com/watch?v=guNg5OVhakU
+
+https://www.youtube.com/watch?v=Yhqsh8h_meE
+
+https://www.youtube.com/watch?v=1SpRZAZHpTA
+
+**Requirement**
+   
+This SDK can be used on any Windows 10 or 11 computer.
+
 ### 3.2. Clone this template with Git <a name="git"></a>
-#### Installing Git for windows
-Follow instruction in the link below:
-https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
+**Install Git for windows**
+
+Follow instructions of this link: https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
+
+**Clone the repository**
+
+Make de C:git directory and clone from github
+In a windows console
+```
+cd c:\
+mkdir git
+cd git
+git clone https://github.com/austral-electronics/ThunderballH7.git
+cd ThunderballH7
+dir
+```
 
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
 
@@ -62,10 +97,10 @@ https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
 2. Unzip OpenOCD in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
 
 ### 3.7. Setup VsCode for the debugger <a name="setup"></a>
-6. If needed modify in the file c_cpp_properties.json the compilerPath
-7. If needed modify in the file launch.json the serverpath and gdbPath
-7. If needed modify in the makefile the openocd path and compiler path 
-8. make or make FLASH=Y to compile project and deploy project in the target
+1. If needed modify in the file c_cpp_properties.json the compilerPath
+2. If needed modify in the file launch.json the serverpath and gdbPath
+3. If needed modify in the makefile the openocd path and compiler path 
+4. make or make FLASH=Y to compile project and deploy project in the target
 
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
@@ -82,7 +117,8 @@ cd .\Middlewares\Third_Party\LwIP\src\apps\http\
 cd ../../../../../..
 ``` 
 ### 4.4. Compile the application <a name="compile"></a>
-8. make or make FLASH=Y to compile project and deploy project in the target
+1. make or make FLASH=Y to compile project and deploy project in the target
+   
 ### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
@@ -98,15 +134,10 @@ cd ../../../../../..
     HTTPD_USE_CUSTOM_FSDATA 0
 
 3. Generate fsdata.c by executing ./makefsdata.exe in the folder: C:\git\RHP\Middlewares\Third_Party\LwIP\src\apps\http
-    cd .\Middlewares\Third_Party\LwIP\src\apps\http\
-   
-    .\makefsdata.exe
-    cd ../../../../../..
-    make
 
-5. Exclude fsdata.c from compilation. right clic on file fsdata.c and then "Ressource configuration/exclude". If fsdata.c is hidden, right clic on project and the refresh.
+4. Exclude fsdata.c from compilation. right clic on file fsdata.c and then "Ressource configuration/exclude". If fsdata.c is hidden, right clic on project and the refresh.
 
-6. In the main.c file replace MPU_Config function by this one:
+5. In the main.c file replace MPU_Config function by this one:
 ```
     void MPU_Config(void)
     {
