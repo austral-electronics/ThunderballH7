@@ -41,7 +41,7 @@ STM32Cube MCU Package for STM32H7 series : https://www.st.com/en/embedded-softwa
 ### 3.1. Note and requirement <a name="note"></a>
 **Note**
    
-Installation of the SDK for visual studio code has recently been simplified (March 2023) by the creation of a VsCode plugin for STM32. The documentation below does not take this plugin into account at present.
+Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VsCode plugin for STM32. The documentation below does not take this plugin into account at present.
 
 https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795
 
@@ -55,7 +55,7 @@ https://www.youtube.com/watch?v=1SpRZAZHpTA
 
 **Requirement**
    
-This SDK can be used on any Windows 10 or 11 computer.
+This SDK can be used on any Windows 10 or 11 64bits computers.
 
 ### 3.2. Clone this template with Git <a name="git"></a>
 **Install Git for windows**
@@ -74,8 +74,11 @@ git clone https://github.com/austral-electronics/ThunderballH7.git
 cd ThunderballH7
 dir
 ```
-
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
+
+Install Visual Studio code for windows : https://code.visualstudio.com/download
+
+Install somes plugin
 
 ### 3.4. Install STM32 Tools <a name="st_tools"></a>
 
