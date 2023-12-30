@@ -4,16 +4,35 @@
 [![ThunderballH7](/SDK/images/Thunderball_H7_OEM.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)
 
 ## Table of contents
-1. [Hardware](#hardware)
-2. [Install SDK Tools](#tools)
-2.1. [Install Visual Studio Code](#vscode)
-2.2. [Install STM32CubeMX](#cubemx)   
-3.   [Disclaimers](#disclamers)
+1. [Datasheet and Product Installation](#hardware)  
+2. [ST Documentation](#st)  
+3. [Install a Visual Studio Code based SDK on Windows 10/11](#install)  
+3.1. [Note](#note)  
+3.2. [Clone this template with Git](#git)  
+3.3. [Install Visual Studio Code](#vscode)  
+3.4. [Install ST Tools](#st_tools)  
+3.5. [Install the compilation toolchain](#toolchain)  
+3.6. [Install the debugger tools](#openocd)  
+4. [Test the Autotest Template](#test)  
+4.1. [Change the IP Address](#ip)  
+4.2. [Modify and Compile the Web pages](#web)  
+4.3. [Compile the application](#compile)  
+4.4. [Debug the template using the ST-LINK/V2 JTAG/SWD tool](#debug)  
+4.5. [Run the template using the USB Bootloader](#bootload)  
+4.6. [How to test a product with this autotest](#autotest)
+5. [Modify the device configuration with the STM32CubeMX](#faq)
+6. [FAQ & Troubleshooting](#faq)  
+6.1. [Ethernet not working](#ethernet)  
+7.   [Disclaimers](#disclamers)
 
-## 1. Hardware <a name="hardware"></a>
+## 1. Datasheet and Product Installation <a name="hardware"></a>
 
 **Download a PDF Hardware specifications and installation** : [Here](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
 
+## 2. ST Documentation <a name="st"></a>
+
+## 3. Install a Visual Studio Code based SDK on Windows 10/11 <a name="install"></a>
+## 3.1. Note <a name="note"></a>
 
 ## Setup CubeMx for Ethernet option
 1. Create the CubeMx project and follow instruction from st:    
