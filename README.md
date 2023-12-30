@@ -1,5 +1,7 @@
-# Thunderball H7 OEM
+# Thunderball H7 OEM – Industrial & Marine Rugged IP67 Calculator / IoT Gateway – STM32H7 Ecosystem
+*[www.austral-elec.com](http://austral-eng.com/en/accueil-english-2/) - Intelligent Technologies for Marine, Industrial IoT and Unmanned Vehicles*  
 
+[![ThunderballH7](/images/Thunderball_H7_OEM.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)
 
 ## Setup CubeMx for Ethernet option
 1. Create the CubeMx project and follow instruction from st:    
