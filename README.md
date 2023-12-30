@@ -4,35 +4,57 @@
 [![ThunderballH7](/SDK/images/Thunderball_H7_OEM.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)
 
 ## Table of contents
-1. [Datasheet and Product Installation](#hardware)  
-2. [ST Documentation](#st)  
-3. [Install a Visual Studio Code based SDK on Windows 10/11](#install)  
-3.1. [Note](#note)  
+1. [DATASHEET AND WIRING](#hardware)  
+2. [STM32H7 ST DOCUMENTATION](#st)  
+3. [INSTALL A VSCODE BASED SDK FOR STM32H7](#install)  
+3.1. [Note and requirement](#note)  
 3.2. [Clone this template with Git](#git)  
 3.3. [Install Visual Studio Code](#vscode)  
-3.4. [Install ST Tools](#st_tools)  
+3.4. [Install STM32 Tools](#st_tools)  
 3.5. [Install the compilation toolchain](#toolchain)  
-3.6. [Install the debugger tools](#openocd)  
-4. [Test the Autotest Template](#test)  
-4.1. [Change the IP Address](#ip)  
-4.2. [Modify and Compile the Web pages](#web)  
-4.3. [Compile the application](#compile)  
-4.4. [Debug the template using the ST-LINK/V2 JTAG/SWD tool](#debug)  
-4.5. [Run the template using the USB Bootloader](#bootload)  
-4.6. [How to test a product with this autotest](#autotest)
-5. [Modify the device configuration with the STM32CubeMX](#faq)
-6. [FAQ & Troubleshooting](#faq)  
+3.6. [Install the debugger tool](#openocd)  
+4. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
+4.1. [Note and requirement](#note_autotest)  
+4.2. [Change the IP Address](#ip)  
+4.3. [Modify and Compile the Web pages](#web)  
+4.4. [Compile the application](#compile)  
+4.5. [Debug the template using the ST-LINK/V2](#debug)  
+4.6. [Run the template using the USB Bootloader](#bootload)  
+4.7. [How to test a product with this autotest](#autotest)  
+5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
+6. [FAQ & TROUBLESHOOTING](#faq)  
 6.1. [Ethernet not working](#ethernet)  
-7.   [Disclaimers](#disclamers)
+7.   [DISCLAIMERS](#disclamers)  
 
-## 1. Datasheet and Product Installation <a name="hardware"></a>
+## 1. DATASHEET AND WIRING <a name="hardware"></a>
 
 **Download a PDF Hardware specifications and installation** : [Here](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
 
-## 2. ST Documentation <a name="st"></a>
+## 2. STM32H7 ST DOCUMENTATION <a name="st"></a>
 
-## 3. Install a Visual Studio Code based SDK on Windows 10/11 <a name="install"></a>
-## 3.1. Note <a name="note"></a>
+## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
+### 3.1. Note and requirement <a name="note"></a>
+### 3.2. Clone this template with Git <a name="git"></a>
+#### Installing Git for windows
+Follow instruction in the link below:
+https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
+
+### 3.3. Install Visual Studio Code <a name="vscode"></a>
+### 3.4. Install STM32 Tools <a name="st_tools"></a>
+### 3.5. Install the compilation toolchain <a name="toolchain"></a>
+### 3.6. Install the debugger tool <a name="openocd"></a>
+### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
+### 4.1. Note and requirement <a name="note_autotest"></a>
+### 4.2. Change the IP Address <a name="ip"></a>
+### 4.3. Modify and Compile the Web pages <a name="web"></a>
+### 4.4. Compile the application <a name="compile"></a>
+### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
+### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
+### 4.7. How to test a product with this autotest <a name="autotest"></a>
+## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
+## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
+### 6.1. Ethernet not working <a name="ethernet"></a>
+## 7. DISCLAIMERS <a name="disclamers"></a>
 
 ## Setup CubeMx for Ethernet option
 1. Create the CubeMx project and follow instruction from st:    
