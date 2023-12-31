@@ -116,30 +116,47 @@ Built for x86_64-w64-mingw32
 
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
- - **Note**
-   This template is intentionally very simple, it is a bare metal example, without DMA or interrupt, using the STM32CubeMX Code Generator for peripherals configuration.  
-   This template performs the functional test by operating all hardware peripherals as well as the basic software peripherals.
-   You can easily clone this example as the basis for your project, so you won't need the SDK directory.  
- - **Requirement**  
-    To test with the USB Bootloader:  
-        - ThunderballH7  
-        - M12<->RJ45 Ethernet Cable  
-        - M12 CANBus Cable (NMEA2000 Cable) 
-        - 12V Power Supply  
-        - USB-A to USB-C cable (Android Phone charging/PC cable)  
+ - **Note**  
+   This template is intentionally as simple as possible, it is a bare metal example, without DMA or interrupt, using the STM32CubeMX Code Generator for peripherals configuration.  
+   This template performs the functional test by operating all hardware peripherals as well as the basic software peripherals.  
+   You can easily clone this example as the basis for your project, so you won't need the SDK directory.
+   
+ - **Requirement**
+     - To Bootload a new image using the USB Bootloader:  
+         - *Thunderball H7 OEM - STM32 H7 Calculator*  
+         - *USB-A to USB-C cable (Android phone charging cable)*  
+         - *A PC with this SDK*  
 
-    To Debug in JTAG/SWD:
-        - ST-LINK/V2 Probe
-        - 
+     - To test the Web pages demo:  
+         - *M12<->RJ45 Ethernet Cable*  
+         - *M12 CANBus Cable (NMEA2000 Cable)*  
+         - *12V Power Supply*  
+     
+     - To test an RS232 Console on COM1 (stdio redirection) as well as the FRAM, RTC and backlight:  
+         - *A Binder 620 to DB9 RS232 cable + an USB To Serial DB9 (RS232) Adapter Cable (see Datasheet for wiring)*  
+   
+     - To Debug in JTAG/SWD:  
+         - *Thunderball H7 version with a blind Grommet in the base of the enclosure to access to JTAG/SWD JST connector (See the datasheet)*  
+         - *ST-LINK/V2 Probe*  
+         - *JST_2_Ribbon_JTAG_Cable - JTAG Adapter (See the datasheet)*  
+
+     - To perform the entire functional test:  
+         - *A small CANbus installation with a sensor that periodically transmits frames.*  
+         - *A CANbus Analyser (See frames sended)*  
+         - *A RS422 point-to-point cable (!!! with terminations and bias resistors !!!) to send data from TX+/TX- on one COM to RX+/RX- on another.*  
+         - *A Binder 620 to RS232 RX only cable (see Datasheet for wiring)*
+         - *Another USB To Serial DB9 (RS232) Adapter Cable*  
+         - *Strap the RTS to CTS to fully test the COM1 port*  
+   
 ### 4.2. Change the IP Address <a name="ip"></a>
 The default IP Adress is static at 192.168.100.222, to change this address edit the file "LWIP/App/lwip.c" line 63
 
 ### 4.3. Modify and Compile the Web pages <a name="web"></a>
-If you modify the web pages, you must first compile the web pages with makefsdata.exe before compiling the application.
-Put the file [makefsdata.exe](https://github.com/ARMmbed/lwip/tree/master/src/apps/httpd/makefsdata) in the folder middleware/third_party/lwip/scr/apps/httpd and run the executable.
-It will create the file fsdata.c, which must be excluded from the buid right-click on it in the project and resource configuration/exclude.
+If you modify the web pages, you must first compile the web pages with makefsdata.exe before compiling the application.  
+Put the file [makefsdata.exe](https://github.com/ARMmbed/lwip/tree/master/src/apps/httpd/makefsdata) in the folder middleware/third_party/lwip/scr/apps/httpd and run the executable.  
+It will create the file fsdata.c, which must be excluded from the buid right-click on it in the project and resource configuration/exclude.  
 
-Run in the VS Code terminal : 
+Run in the VS Code terminal :  
 ```
 cd .\Middlewares\Third_Party\LwIP\src\apps\http\
 .\makefsdata.exe
