@@ -15,7 +15,7 @@
             "cStandard": "c11",
             "cppStandard": "c++11",
             "intelliSenseMode": "gcc-arm",
-            "compilerPath": "D:\\toolchain\\gcc-arm-none-eabi-10.3-2021.10\\bin\\arm-none-eabi-gcc.exe",
+            "compilerPath": "C:\\git\\toolchain\\gcc-arm-none-eabi-10.3-2021.10\\bin\\arm-none-eabi-gcc.exe",
             "compilerArgs": [
                 "-mcpu=cortex-m7",
                 "-mthumb"
