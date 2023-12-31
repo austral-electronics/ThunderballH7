@@ -57,7 +57,7 @@ It will be embedded into a third-party system in a harsh environment, like weara
  - **Note**  
 ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) for development, but VSCode is the preferred tool for professionals working on different platforms, OS and languages.  
 Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VSCode plugin for STM32.  
-🔴🔴🔴 **The documentation below does not take the VSCode for STM32 plugin into account at present.** 🔴🔴🔴  
+🔴🔴🔴 **The documentation below does not take the new VSCode for STM32 plugin into account at present.** 🔴🔴🔴  
     - [VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
     - [STM32 for VSCode VSCode plugin](https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode)  
     - [How to install the STM32 VS Code Extension?](https://www.youtube.com/watch?v=guNg5OVhakU)  
