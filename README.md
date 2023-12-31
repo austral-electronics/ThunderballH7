@@ -125,17 +125,18 @@ Built for x86_64-w64-mingw32
      - To Bootload a new image using the USB Bootloader:  
          - *Thunderball H7 OEM - STM32 H7 Calculator*  
          - *USB-A to USB-C cable (Android phone charging cable)*  
-         - *A PC with this SDK*  
+         - *A PC with STM32CubeProgrammer*  
 
      - To test the Web pages demo:  
          - *M12<->RJ45 Ethernet Cable*  
          - *M12 CANBus Cable (NMEA2000 Cable)*  
          - *12V Power Supply*  
      
-     - To test an RS232 Console on COM1 (stdio redirection) as well as the FRAM, RTC and backlight:  
-         - *A Binder 620 to DB9 RS232 cable + an USB To Serial DB9 (RS232) Adapter Cable (see Datasheet for wiring)*  
+     - To compile and test an RS232 Console on COM1 (stdio redirection) as well as the FRAM, RTC and backlight:  
+         - *A Binder 620 to DB9 RS232 cable + an USB To Serial DB9 (RS232) Adapter Cable (see Datasheet for wiring)*
+         - *A PC with this SDK*  
    
-     - To Debug in JTAG/SWD:  
+     - To debug in JTAG/SWD:  
          - *Thunderball H7 version with a blind Grommet in the base of the enclosure to access to JTAG/SWD JST connector (See the datasheet)*  
          - *ST-LINK/V2 Probe*  
          - *JST_2_Ribbon_JTAG_Cable - JTAG Adapter (See the datasheet)*  
@@ -144,7 +145,7 @@ Built for x86_64-w64-mingw32
          - *A small CANbus installation with a sensor that periodically transmits frames.*  
          - *A CANbus Analyser (See frames sended)*  
          - *A RS422 point-to-point cable (!!! with terminations and bias resistors !!!) to send data from TX+/TX- on one COM to RX+/RX- on another.*  
-         - *A Binder 620 to RS232 RX only cable (see Datasheet for wiring)*
+         - *A Binder 620 to RS232 RX only DB9 cable (see Datasheet for wiring)*
          - *Another USB To Serial DB9 (RS232) Adapter Cable*  
          - *Strap the RTS to CTS to fully test the COM1 port*  
    
