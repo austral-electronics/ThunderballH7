@@ -7,7 +7,7 @@
         
         {
             "cwd": "${workspaceRoot}",
-            "executable": "./build/RideHeightProcessor.elf",
+            "executable": "./build/ThunderballH7.elf",
             "name": "debug stm32h743",
             "request": "launch",
             "type": "cortex-debug",
