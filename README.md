@@ -3,6 +3,21 @@
 
 [![ThunderballH7](/SDK/images/Thunderball_H7_OEM.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)
 
+# Applications
+The **Thunderball H7 OEM is designed for SWaP-sensitive, robust and real-time applications using remote HMI.**  
+It will be embedded into a third-party system in a harsh environment, like wearable edge computing, boats, vehicles, drones, machines, outdoor and underground platforms… and for a wide range of use cases:  
+- Interfacing : sensors, actuators, PLCs, mission computer…  
+- Datalog : Data collection, Black box…  
+- Dashboard : HTML5 dashboard on all browsers and Industrial or marine Multifunction Displays.  
+- IoT gateway : Marine IoT, IIoT, Cloud IoT…  
+- Marine : Autopilot, Attitude control, Foiler Flight Control System, Wind calculation…  
+- Drones / Robotics : ROS2 Client node, Command control, Guidance…  
+- Overall Equipment Effectiveness (OEE) : Fleet management, Asset tracking, Machine monitoring, Energy Management, Security systems…  
+- Automation : Building, boat and transportation automation, Climate control…  
+
+**Sectors** : Marine, Industry 4.0, Drones, Robotics, Off-Highway Vehicles, Smart Farming …  
+
+[Product Web Page](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)  
 ## Table of contents
 1. [DATASHEET AND WIRING](#hardware)  
 2. [STM32H7 ST DOCUMENTATION](#st)  
@@ -172,19 +187,17 @@ cd ../../../../../..
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
 #### Setup CubeMx for Ethernet option
-1. Create the CubeMx project and follow instruction from st:    
-        https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working
-    If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile
-
-
-2.  Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:
+- Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
+  If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
+- Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:  
     HTTPD_USE_CUSTOM_FSDATA 0
 
-3. Generate fsdata.c by executing ./makefsdata.exe in the folder: C:\git\RHP\Middlewares\Third_Party\LwIP\src\apps\http
+- Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
 
-4. Exclude fsdata.c from compilation. right clic on file fsdata.c and then "Ressource configuration/exclude". If fsdata.c is hidden, right clic on project and the refresh.
+- Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
+  If "fsdata.c" is hidden, right clic on project and the refresh.  
 
-5. In the main.c file replace MPU_Config function by this one:
+- In the main.c file replace MPU_Config function by this one:  
 ```
     void MPU_Config(void)
     {
