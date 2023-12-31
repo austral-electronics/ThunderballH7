@@ -81,20 +81,23 @@ dir
  - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html) 
 
 ### 3.5. Install the compilation toolchain <a name="toolchain"></a>
- - Download GCC cross compiler: https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm  
- - Unzip GCC cross compiler in the folder "C:/git/toolchain". Take care replace space with '-' character in path directories  
- - Download make for windows (binary & depedencies): http://gnuwin32.sourceforge.net/packages/make.htm  
- - Install make for windows somewhere and add the path of make to environment variables
+ - [Download the Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
+   select a Windows hosted cross toolchains for AArch32 bare-metal target (arm-none-eabi) in zip format  
+   Note : This SDK is tested with [gcc-arm-none-eabi-10.3-2021.10-win32.zip](https://developer.arm.com/downloads/-/gnu-rm/10-3-2021-10)  
+ - Unzip the Arm GNU Toolchain in the folder like "C:/git/toolchain". (Take care to replace space with '-' character in path directories)  
+ - Download "make" for windows (binary & depedencies): http://gnuwin32.sourceforge.net/packages/make.htm  
+ - Install "make" for windows somewhere and add the path of make to environment variables
 
 ### 3.6. Install the debugger tool <a name="openocd"></a>
- - Download OpenOCD: https://gnutoolchains.com/arm-eabi/openocd/  
- - Unzip OpenOCD in a folder "C:/git/toolchain". Take care replace space with '-' char in path directories
+ - [Download Download pre-built OpenOCD for Windows](https://gnutoolchains.com/arm-eabi/openocd/)
+   Note : This SDK is tested with the 20211118 version
+ - Unzip OpenOCD in a folder like "C:/git/toolchain". (Take care to replace space with '-' char in path directories)
 
-### 3.7. Setup VSCode for the OpenOCD debugger <a name="setup"></a>
- - If needed modify in the file c_cpp_properties.json the compilerPath
- - If needed modify in the file launch.json the serverpath and gdbPath
- - If needed modify in the makefile the openocd path and compiler path 
- - launch "make" or "make FLASH=Y" in a terminal to compile project and deploy project in the target
+### 3.7. Setup VSCode for the OpenOCD debugger and test the cross-compilation <a name="setup"></a>
+ - If needed modify the "compilerPath" in the file ".vccode/c_cpp_properties.json"  
+ - If needed modify the "serverpath" and "gdbPath" in the file ".vccode/launch.json"  
+ - If needed modify the "openocd path" and "compiler path" in the "makefile" 
+ - Test "make" and "make FLASH=Y" in a VSCode terminal to compile the project and deploy the project in the target
 
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
