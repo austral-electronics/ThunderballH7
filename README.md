@@ -50,6 +50,11 @@ It will be embedded into a third-party system in a harsh environment, like weara
 [STM32 Embedded Software](https://www.st.com/en/embedded-software/stm32-embedded-software.html)  
 [STM32 MCUs Software development tools](https://community.st.com/t5/stm32-mcus-software-development/ct-p/mcu-software-development-tools)  
 [STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
+[Installing STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Installing_STM32CubeMonitor)  
+
+[Introduction to STM32CubeMX](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Category:STM32CubeMX)  
+[Introduction to STM32Cube Expansion Packages](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Introduction_to_STM32Cube_Expansion_Packages)  
+[Introduction and main principles of STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Introduction_and_main_principles_of_STM32CubeMonitor)   
 [STM32H743 Datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf)
 
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
