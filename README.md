@@ -12,7 +12,7 @@
 3.3. [Install Visual Studio Code](#vscode)  
 3.4. [Install STM32 Tools](#st_tools)  
 3.5. [Install the compilation toolchain](#toolchain)  
-3.6. [Install the debugger tool](#openocd)
+3.6. [Install the debugger tool](#openocd)  
 3.7. [Setup VsCode for the debugger](#setup) 
 5. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
 4.1. [Note and requirement](#note_autotest)  
@@ -91,7 +91,7 @@ dir
        - You can also try the "make" from : http://gnuwin32.sourceforge.net/packages/make.htm  
  - Install the "xpack" directory in a folder like "C:/git/toolchain"
  - Add the path of "make" (in bin directory) to environment variables of Windows
- - Test "make" in a windows console
+ - Test "make" in a Windows console
 
 ### 3.6. Install the debugger tool <a name="openocd"></a>
  - [Download pre-built OpenOCD for Windows](https://gnutoolchains.com/arm-eabi/openocd/)  
