@@ -85,18 +85,23 @@ dir
    select a Windows hosted cross toolchains for AArch32 bare-metal target (arm-none-eabi) in zip format  
    Note : This SDK is tested with [gcc-arm-none-eabi-10.3-2021.10-win32.zip](https://developer.arm.com/downloads/-/gnu-rm/10-3-2021-10)  
  - Unzip the Arm GNU Toolchain in the folder like "C:/git/toolchain". (Take care to replace space with '-' character in path directories)  
- - Download "make" for windows (binary & depedencies): http://gnuwin32.sourceforge.net/packages/make.htm  
- - Install "make" for windows somewhere and add the path of make to environment variables
+ - Download "make" for windows (binary & depedencies) from [The xPack Project](https://xpack.github.io/tags/windows-build-tools/)  
+   Note :  
+       - This SDK is tested with [xpack-windows-build-tools-4.2.1-2](https://xpack.github.io/tags/windows-build-tools/)  
+       - You can also try the "make" from : http://gnuwin32.sourceforge.net/packages/make.htm  
+ - Install the "xpack" directory in a folder like "C:/git/toolchain"
+ - Add the path of "make" (in bin directory) to environment variables of Windows
+ - Test "make" in a windows console
 
 ### 3.6. Install the debugger tool <a name="openocd"></a>
- - [Download Download pre-built OpenOCD for Windows](https://gnutoolchains.com/arm-eabi/openocd/)
+ - [Download pre-built OpenOCD for Windows](https://gnutoolchains.com/arm-eabi/openocd/)  
    Note : This SDK is tested with the 20211118 version
  - Unzip OpenOCD in a folder like "C:/git/toolchain". (Take care to replace space with '-' char in path directories)
 
 ### 3.7. Setup VSCode for the OpenOCD debugger and test the cross-compilation <a name="setup"></a>
  - If needed modify the "compilerPath" in the file ".vccode/c_cpp_properties.json"  
  - If needed modify the "serverpath" and "gdbPath" in the file ".vccode/launch.json"  
- - If needed modify the "openocd path" and "compiler path" in the "makefile" 
+ - If needed modify the "OPENOCD_PATH" and "GCC_PATH" in the "makefile" 
  - Test "make" and "make FLASH=Y" in a VSCode terminal to compile the project and deploy the project in the target
 
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
