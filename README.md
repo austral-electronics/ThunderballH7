@@ -40,12 +40,13 @@
 ### 3.1. Note and requirement <a name="note"></a>
  - **Note**  
 ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) for development, but VSCode is the preferred tool for professionals working on different platforms, OS and languages.  
-Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VSCode plugin for STM32. The documentation below does not take this plugin into account at present.  
-[VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
-[STM32 for VSCode VSCode plugin](https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode)  
-[How to install the STM32 VS Code Extension?](https://www.youtube.com/watch?v=guNg5OVhakU)  
-[Get started with Project Manager in the STM32 VS Code Extension](https://www.youtube.com/watch?v=Yhqsh8h_meE)  
-[Konfiguracja VSCode z STM32 (STM32 VSCode Extension)](https://www.youtube.com/watch?v=1SpRZAZHpTA)  
+Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VSCode plugin for STM32.  
+!!! The documentation below does not take this plugin into account at present !!!.  
+    - [VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
+    - [STM32 for VSCode VSCode plugin](https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode)  
+    - [How to install the STM32 VS Code Extension?](https://www.youtube.com/watch?v=guNg5OVhakU)  
+    - [Get started with Project Manager in the STM32 VS Code Extension](https://www.youtube.com/watch?v=Yhqsh8h_meE)  
+    - [Konfiguracja VSCode z STM32 (STM32 VSCode Extension)](https://www.youtube.com/watch?v=1SpRZAZHpTA)  
  - **Requirement**  
 This SDK is written for a Windows 10/11, 64 bits computer, but it can be adapted for development under Linux or Mac.  
 [Installing STM32CubeMX on Linux or Mac](https://www.st.com/en/development-tools/stm32cubemx.html)
@@ -55,7 +56,7 @@ This SDK is written for a Windows 10/11, 64 bits computer, but it can be adapted
 [Installing Git for Windows tutorial](https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/)
 
  - **Clone the repository**  
-To make a "C:git" directory and clone the template from github, type in a Windows console :  
+To make a "C:\git" directory and clone the template from github, type in a Windows console :  
 ```
 cd c:\
 mkdir git
@@ -66,36 +67,34 @@ dir
 ```
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
 
-[Install Visual Studio code for windows](https://code.visualstudio.com/download)  
-Install somes plugins :
- - C/C++
- - git
- - git graph
+ - [Install Visual Studio code for windows](https://code.visualstudio.com/download)  
+ - Install somes plugins :  
+    - [C/C++ for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp)  
+    - [Cortex Debug](https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug)  
+    - [MemoryView](https://marketplace.visualstudio.com/items?itemName=mcu-debug.memory-view)
+    - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
+    - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 
-### 3.4. Install STM32 Tools <a name="st_tools"></a>
+### 3.4. Install ST STM32 Tools <a name="st_tools"></a>
+ - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html)  
+ - [Install the STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
+ - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html) 
 
 ### 3.5. Install the compilation toolchain <a name="toolchain"></a>
-1. Download GCC cross compiler:
-    https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm
-
-2. Unzip GCC cross compiler in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
-
-3. Download make for windows (binary & depedencies):
-    http://gnuwin32.sourceforge.net/packages/make.htm
-   
-4. Install make for windows somewhere and add the path of make to environment variables
+ - Download GCC cross compiler: https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm  
+ - Unzip GCC cross compiler in the folder "C:/git/toolchain". Take care replace space with '-' character in path directories  
+ - Download make for windows (binary & depedencies): http://gnuwin32.sourceforge.net/packages/make.htm  
+ - Install make for windows somewhere and add the path of make to environment variables
 
 ### 3.6. Install the debugger tool <a name="openocd"></a>
-1. Download OpenOCD:
-    https://gnutoolchains.com/arm-eabi/openocd/
+ - Download OpenOCD: https://gnutoolchains.com/arm-eabi/openocd/  
+ - Unzip OpenOCD in a folder "C:/git/toolchain". Take care replace space with '-' char in path directories
 
-2. Unzip OpenOCD in a folder "toolchain" in the folder that contain the project folder. Take care replace space with '-' char in path directories
-
-### 3.7. Setup VsCode for the debugger <a name="setup"></a>
-1. If needed modify in the file c_cpp_properties.json the compilerPath
-2. If needed modify in the file launch.json the serverpath and gdbPath
-3. If needed modify in the makefile the openocd path and compiler path 
-4. make or make FLASH=Y to compile project and deploy project in the target
+### 3.7. Setup VSCode for the OpenOCD debugger <a name="setup"></a>
+ - If needed modify in the file c_cpp_properties.json the compilerPath
+ - If needed modify in the file launch.json the serverpath and gdbPath
+ - If needed modify in the makefile the openocd path and compiler path 
+ - launch "make" or "make FLASH=Y" in a terminal to compile project and deploy project in the target
 
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
