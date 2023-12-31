@@ -55,7 +55,8 @@ It will be embedded into a third-party system in a harsh environment, like weara
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
 ### 3.1. Note and requirement <a name="note"></a>
  - **Note**  
-ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) for development, but VSCode is the preferred tool for professionals working on different platforms, OS and languages.  
+ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) as code editor, it is the easy way to code rapidly.  
+But VSCode is the preferred tool for professionals working on different platforms, OS and languages, especially for the large number of plug-ins.  
 Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VSCode plugin for STM32.  
 🔴🔴🔴 **The documentation below does not take the new VSCode for STM32 plugin into account at present.** 🔴🔴🔴  
     - [VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
