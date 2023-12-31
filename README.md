@@ -12,9 +12,10 @@
 3.3. [Install Visual Studio Code](#vscode)  
 3.4. [Install STM32 Tools](#st_tools)  
 3.5. [Install the compilation toolchain](#toolchain)  
-3.6. [Install the debugger tool](#openocd)  
-3.7. [Setup VsCode for the debugger](#setup) 
-5. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
+3.6. [Install the OpenOCD debugger tool](#openocd)  
+3.7. [Setup VsCode for the debugger](#setup)  
+3.8. [Install debug tools](#debug_tools)  
+4. [EVALUATE THE AUTOTEST TEMPLATE](#test)  
 4.1. [Note and requirement](#note_autotest)  
 4.2. [Change the IP Address](#ip)  
 4.3. [Modify and Compile the Web pages](#web)  
@@ -22,10 +23,10 @@
 4.5. [Debug the template using the ST-LINK/V2](#debug)  
 4.6. [Run the template using the USB Bootloader](#bootload)  
 4.7. [How to test a product with this autotest](#autotest)  
-6. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
-7. [FAQ & TROUBLESHOOTING](#faq)  
-6.1. [Ethernet not working](#ethernet)  
-8.   [DISCLAIMERS](#disclamers)  
+5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
+6. [FAQ & TROUBLESHOOTING](#faq)  
+7.1. [Ethernet not working](#ethernet)  
+8. [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEET AND WIRING <a name="hardware"></a>
 [Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
@@ -64,7 +65,9 @@ cd git
 git clone https://github.com/austral-electronics/ThunderballH7.git
 cd ThunderballH7
 dir
-```
+```  
+Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay icons showing the file status) 
+
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
 
  - [Install Visual Studio code for windows](https://code.visualstudio.com/download)  
@@ -89,24 +92,48 @@ dir
    Note :  
        - This SDK is tested with [xpack-windows-build-tools-4.2.1-2](https://xpack.github.io/tags/windows-build-tools/)  
        - You can also try the "make" from : http://gnuwin32.sourceforge.net/packages/make.htm  
- - Install the "xpack" directory in a folder like "C:/git/toolchain"
- - Add the path of "make" (in bin directory) to environment variables of Windows
- - Test "make" in a Windows console
-
+ - Install the "xpack-windows-build-tools-XXX" directory in a folder like "C:/git/toolchain"
+ - Add the path of "make" (C:\git\toolchain\xpack-windows-build-tools-XXX\bin) to [environment variables](https://phoenixnap.com/kb/windows-set-environment-variable) of Windows  
+ - Test the make link in a Windows console or in a VSCode Terminal
+```
+C:\git>make -v
+GNU Make 4.2.1
+Built for x86_64-w64-mingw32
+```
 ### 3.6. Install the debugger tool <a name="openocd"></a>
  - [Download pre-built OpenOCD for Windows](https://gnutoolchains.com/arm-eabi/openocd/)  
    Note : This SDK is tested with the 20211118 version
  - Unzip OpenOCD in a folder like "C:/git/toolchain". (Take care to replace space with '-' char in path directories)
 
-### 3.7. Setup VSCode for the OpenOCD debugger and test the cross-compilation <a name="setup"></a>
+### 3.7. Setup VSCode for the OpenOCD debugger and test the cross-compilation <a name="setup"></a>  
  - If needed modify the "compilerPath" in the file ".vccode/c_cpp_properties.json"  
  - If needed modify the "serverpath" and "gdbPath" in the file ".vccode/launch.json"  
  - If needed modify the "OPENOCD_PATH" and "GCC_PATH" in the "makefile" 
  - Test "make" and "make FLASH=Y" in a VSCode terminal to compile the project and deploy the project in the target
 
+### 3.8. Install debug tools <a name="debug_tools"></a>
+[Install PuTTY](https://www.putty.org/)    
+
 ### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
+ - **Note**
+   This template is intentionally very simple, it is a bare metal example, without DMA or interrupt, using the STM32CubeMX Code Generator for peripherals configuration.  
+   This template performs the functional test by operating all hardware peripherals as well as the basic software peripherals.
+   You can easily clone this example as the basis for your project, so you won't need the SDK directory.  
+ - **Requirement**  
+    To test with the USB Bootloader:  
+        - ThunderballH7  
+        - M12<->RJ45 Ethernet Cable  
+        - M12 CANBus Cable (NMEA2000 Cable) 
+        - 12V Power Supply  
+        - USB-A to USB-C cable (Android Phone charging/PC cable)  
+
+    To Debug in JTAG/SWD:
+        - ST-LINK/V2 Probe
+        - 
 ### 4.2. Change the IP Address <a name="ip"></a>
+The default IP Adress is static at 192.168.100.222, to change this address edit the file "LWIP/App/lwip.c" line 63
+
 ### 4.3. Modify and Compile the Web pages <a name="web"></a>
 If you modify the web pages, you must first compile the web pages with makefsdata.exe before compiling the application.
 Put the file [makefsdata.exe](https://github.com/ARMmbed/lwip/tree/master/src/apps/httpd/makefsdata) in the folder middleware/third_party/lwip/scr/apps/httpd and run the executable.
