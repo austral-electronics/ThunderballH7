@@ -28,44 +28,34 @@
 8.   [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEET AND WIRING <a name="hardware"></a>
-
-**Download a PDF Hardware specifications and installation** : [Here](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
+[Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
 
 ## 2. STM32H7 ST DOCUMENTATION <a name="st"></a>
-
-STM32 Embedded Software : https://www.st.com/en/embedded-software/stm32-embedded-software.html
-
-STM32Cube MCU Package for STM32H7 series : https://www.st.com/en/embedded-software/stm32cubeh7.html
+[STM32 Embedded Software](https://www.st.com/en/embedded-software/stm32-embedded-software.html)  
+[STM32 MCUs Software development tools](https://community.st.com/t5/stm32-mcus-software-development/ct-p/mcu-software-development-tools)  
+[STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
+[STM32H743 Datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf)
 
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
 ### 3.1. Note and requirement <a name="note"></a>
-**Note**
-   
-Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VsCode plugin for STM32. The documentation below does not take this plugin into account at present.
-
-https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795
-
-https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode
-
-https://www.youtube.com/watch?v=guNg5OVhakU
-
-https://www.youtube.com/watch?v=Yhqsh8h_meE
-
-https://www.youtube.com/watch?v=1SpRZAZHpTA
-
-**Requirement**
-   
-This SDK can be used on any Windows 10 or 11 64bits computers.
+ - **Note**  
+ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) for development, but VSCode is the preferred tool for professionals working on different platforms, OS and languages.  
+Installation of the SDK for visual studio code has recently (March 2023) been simplified by the creation of a VSCode plugin for STM32. The documentation below does not take this plugin into account at present.  
+[VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
+[STM32 for VSCode VSCode plugin](https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode)  
+[How to install the STM32 VS Code Extension?](https://www.youtube.com/watch?v=guNg5OVhakU)  
+[Get started with Project Manager in the STM32 VS Code Extension](https://www.youtube.com/watch?v=Yhqsh8h_meE)  
+[Konfiguracja VSCode z STM32 (STM32 VSCode Extension)](https://www.youtube.com/watch?v=1SpRZAZHpTA)  
+ - **Requirement**  
+This SDK is written for a Windows 10/11, 64 bits computer, but it can be adapted for development under Linux or Mac.  
+[Installing STM32CubeMX on Linux or Mac](https://www.st.com/en/development-tools/stm32cubemx.html)
 
 ### 3.2. Clone this template with Git <a name="git"></a>
-**Install Git for windows**
+ - **Install Git for windows**  
+[Installing Git for Windows tutorial](https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/)
 
-Follow instructions of this link: https://vladmihalcea.com/tutorials/git/windows-git-ssh-authentication-to-github/
-
-**Clone the repository**
-
-Make de C:git directory and clone from github
-In a windows console
+ - **Clone the repository**  
+To make a "C:git" directory and clone the template from github, type in a Windows console :  
 ```
 cd c:\
 mkdir git
@@ -76,9 +66,11 @@ dir
 ```
 ### 3.3. Install Visual Studio Code <a name="vscode"></a>
 
-Install Visual Studio code for windows : https://code.visualstudio.com/download
-
-Install somes plugin
+[Install Visual Studio code for windows](https://code.visualstudio.com/download)  
+Install somes plugins :
+ - C/C++
+ - git
+ - git graph
 
 ### 3.4. Install STM32 Tools <a name="st_tools"></a>
 
