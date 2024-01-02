@@ -195,6 +195,7 @@ cd .\Middlewares\Third_Party\LwIP\src\apps\http\
 cd ../../../../../..
 ``` 
 ### 4.4. Compile the application <a name="compile"></a>
+In a VSCode Terminal :  
  - **Clean and recompile the entire project**
  ```
 make clean
@@ -243,10 +244,17 @@ This procedure enables on-site software updates for prototypes and small series 
 - Unplug the USB cable, an power up the supply.  
 
 ### 4.7. How to test a product with this Autotest <a name="autotest"></a>
-
-
+ - **Test Ethernet**  
+Connect the ThunderballH7 to an ethernet switch an power on
+Open a windows/VSCode terminal and test the ping : PING 192.168.100.222  
+Then open a very simple web pages at 192.168.100.222 with any browser, you will see a menu with 3 tabs:
+    - A static page  
+    - A settings page  
+    - A dynamic page with variable refresh  
+  
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
+ - **Test COM1**  
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_autotest.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
 
