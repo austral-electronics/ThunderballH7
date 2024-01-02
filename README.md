@@ -109,7 +109,8 @@ Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay i
 ### 3.4. Install ST STM32 Tools <a name="st_tools"></a>
  - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html)  
  - [Install the STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
- - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html) 
+ - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html)  
+ - [Install STM32 ST-LINK Utility](https://www.st.com/en/development-tools/stsw-link004.html)
 
 ### 3.5. Install the compilation toolchain <a name="toolchain"></a>
  - [Download the Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
@@ -206,12 +207,26 @@ make
 make FLASH=Y
  ```
 ### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
+- Cut off power supply
+- Connect the ST-LINK/V2 probe to the JST JTAG/SWD connector (See the datasheet).  
+- Power the ThunderballH7
+- In VSCode, Flash and Run the application pressing "F5" or "Run" -> "Start Debugging"
+- See the "DEBUG CONSOLE" in order to monitor the proper functioning  
+- Stop the application with "Shift+F5"
 
-Cut off power supply and see the datasheet to connect the ST-LINK/V2 probe to the JST JTAG/SWD connector.  
-
-
+[How to place breakpoints and watch variables, stack and memory](https://www.youtube.com/watch?v=g2Kf6RbdrIs)  
+[VSCode Cortex-Debug Launch Configurations](https://www.electrorules.com/vscode-cortex-debug-launch-configurations/)  
 
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
+
+Compile the web pages and the application.  
+The image generated is in "C:\git\ThunderballH7\build\ThunderballH7.bin"  
+There is also a precompiled test image in "C:\git\ThunderballH7\SDK\Bin\ThunderballH7_autotest.bin"  
+- Cut off power supply
+- Launch the STM32CubeProgrammer Software
+- Connect a USB-A to USB-C cable between PC and ThunderballH7
+- You should hear the USB driver notification sound
+- 
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
