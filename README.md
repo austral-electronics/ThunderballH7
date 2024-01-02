@@ -233,6 +233,7 @@ make FLASH=Y
     - Open the .bin file with "Memory & File editing" -> "Open file"  
     - Flash with "Download"  
 - Unplug the USB cable, an power up the supply.  
+[![ThunderballH7_STM32CubeProgrammer](/SDK/images/ThunderballH7_STM32CubeProgrammer.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
 
