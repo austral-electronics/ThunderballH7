@@ -150,7 +150,7 @@ Built for x86_64-w64-mingw32
    This template performs the functional test by operating all hardware peripherals as well as the basic software peripherals.  
    You can easily clone this example as the basis for your project, so you won't need the SDK directory.
    
- - **Requirement**
+ - **Requirement**  
      - To Bootload a new image using the USB Bootloader:  
          - *Thunderball H7 OEM - STM32 H7 Calculator*  
          - *USB-A to USB-C cable (Android phone charging cable)*  
@@ -179,7 +179,9 @@ Built for x86_64-w64-mingw32
          - *Strap the RTS to CTS to fully test the COM1 port*  
    
 ### 4.2. Change the IP Address <a name="ip"></a>
-The default IP Adress is static at 192.168.100.222, to change this address edit the file "LWIP/App/lwip.c" line 63
+The default IP Adress is static at 192.168.100.222.  
+To change this address rapidly edit the file "LWIP/App/lwip.c" line 63 and recompile.  
+Note : This setting will be erased by CubeMX's automatic code generation, and you will have to change the settings in CubeMX->LWIP->General Settings (See Chapter 5).
 
 ### 4.3. Modify and Compile the Web pages <a name="web"></a>
 If you modify the web pages, you must first compile the web pages with makefsdata.exe before compiling the application.  
@@ -247,18 +249,21 @@ This procedure enables on-site software updates for prototypes and small series 
 
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
-#### Setup CubeMx for Ethernet option
-- Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
-  If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
-- Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:  
-    HTTPD_USE_CUSTOM_FSDATA 0
+ - **Change IP Address Settings**  
+[![ThunderballH7_web_page](/SDK/images/ThunderballH7_STM32CubeMX.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
-- Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
+ - **Setup CubeMx for Ethernet option**  
+     - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
+       If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
+    - Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:  
+      HTTPD_USE_CUSTOM_FSDATA 0
 
-- Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
-  If "fsdata.c" is hidden, right clic on project and the refresh.  
+    - Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
 
-- In the main.c file replace MPU_Config function by this one:  
+    - Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
+      If "fsdata.c" is hidden, right clic on project and the refresh.  
+
+    - In the main.c file replace MPU_Config function by this one:  
 ```
     void MPU_Config(void)
     {
