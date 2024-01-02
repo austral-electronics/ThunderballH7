@@ -218,6 +218,7 @@ make FLASH=Y
 [VSCode Cortex-Debug Launch Configurations](https://www.electrorules.com/vscode-cortex-debug-launch-configurations/)  
 
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
+[![ThunderballH7_STM32CubeProgrammer](/SDK/images/ThunderballH7_STM32CubeProgrammer.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 - Get a .bin image :
     - Compile the web pages and the application.  
     - The image generated is in "C:\git\ThunderballH7\build\ThunderballH7.bin"  
@@ -233,7 +234,6 @@ make FLASH=Y
     - Open the .bin file with "Memory & File editing" -> "Open file"  
     - Flash with "Download"  
 - Unplug the USB cable, an power up the supply.  
-[![ThunderballH7_STM32CubeProgrammer](/SDK/images/ThunderballH7_STM32CubeProgrammer.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
 
