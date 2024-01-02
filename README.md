@@ -40,7 +40,9 @@ It will be embedded into a third-party system in a harsh environment, like weara
 4.7. [How to test a product with this Autotest](#autotest)  
 5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
 6. [FAQ & TROUBLESHOOTING](#faq)  
-7.1. [Ethernet not working](#ethernet)  
+6.1. [Ethernet does not work properly](ethernet_pb)
+6.2. [RS485 does not work properly](rs485_pb)  
+6.3. [USB Bootloader does not work properly](bootload_pb)  
 8. [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEETS <a name="hardware"></a>
@@ -279,14 +281,14 @@ Then open a very simple web pages at 192.168.100.222 with any browser, you will 
  - **Test COM2 to COM5 in RS232 RX only mode**  
     - With a Binder 620 to RS232 RX only DB9 cable (see Datasheet for wiring) and another USB <->RS232 adapter  
     - Open another PuTTY serial console (Serial, COMy, 115200 bauds)  
-    - Connect this cable to COM2  
-    - Send any character with this console, you must see "COM2:X" in the COM1 console  
+    - Connect this RS232_RX cable to COM2  
+    - Send any character with this COM2 console, you must see "COM2:x" in the COM1 console  
     - Test COM3 to COM5
       
  - **Test the bootloader software jump**  
-    - This method may be necessary on older hardware versions or products using the USB device mode, that do not set BOOT0 by powering with a USB-C cable.  
+    - This method may be necessary on products using the USB device port, that do not set BOOT0 by powering with a USB-C cable.  
     - Press 'b' in the COM1 console  
-    - Test the bootload with STM32CubeProgrammer  
+    - Test the bootload with STM32CubeProgrammer
 
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
@@ -302,7 +304,7 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
  - **Modifications applied to source code after CubeMX automatic code generation:**
 
     🔴 **This template was created in 2021 using "STM32CubeMX" 6.4.0 and "STM32Cube MCU Package for STM32H7" 1.9.1** 🔴  
-    🔴 **These versions are buggy (Ethernet, MPU_Config...) and have certainly been upgraded since** 🔴  
+    🔴 **These versions are buggy (Ethernet, MPU_Config...) and have been upgraded since** 🔴  
     🔴 **Some modifications are probably no longer applicable with a newer package version** 🔴  
 
     - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
@@ -371,7 +373,27 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
         }
 ```
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
-### 6.1. Ethernet not working <a name="ethernet"></a>
+### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
+ST [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :
+- We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 163) or in lan8742.C (Depending of the package version).
+- We are waiting an official cubeMX fix from ST.
+- The duration is depending of the driver version, reset vs power up and of the ethernet switch auto-negotiation time (model, 100MB or 1GB)
+- Without this tempo Ethernet will be at 10Mbs from SWD debug reset and ethernet operation will not be ensured from a power up.
+
+The ST tutorials :  
+- https://community.st.com/t5/stm32-mcus/how-to-create-project-for-stm32h7-with-ethernet-and-lwip-stack/ta-p/49308  
+- https://community.st.com/t5/stm32-mcus/ethernet-not-working-on-stm32h7x3/ta-p/49479  
+- https://github.com/stm32-hotspot/STM32H7-LwIP-Examples  
+
+### 6.2. RS485 does not work properly <a name="rs485_pb"></a>
+See Termination and biasing resistors problem on the datasheet  
+
+### 6.3. USB Bootloader does not work properly <a name="bootload_pb"></a>
+There is a new problem which appeared with STM32CubeProgrammer, this error has been [reported](https://community.st.com/t5/stm32cubeprogrammer-mcus/stm32cubeprogrammer-2-14-0-firmware-update-error-over-usb-in/td-p/601282) on the forums in October 2023.  
+The USB bootload stops during flashing when the bootload launch was done with a software jump.  
+We have found that performing a "Verify" before "Download" significantly improves the probability of success.  
+🟢 It works properly with an hardware launch when powering using USB-C (when BOOT0 is maintained at 1 the entire flashing procedure) 🟢   
+
 ## 7. DISCLAIMERS <a name="disclamers"></a>
 
 *Copyright (C) 2022 [Austral Electronics SARL](http://austral-eng.com/en/accueil-english-2/). Changes to the specifications and features in this manual may be made by Austral without prior notice. Specifications and information provided in this manual are for informational use only. Austral assumes no responsibility or liability for any errors or inaccuracies that may appear in this manual including the product & / or software. All trademarks mentioned in this manual are property of their respective owners. This product contains copyrighted software which are released under multiple open source licenses including but not limited to the GNU GPL, LGPL, and MIT BSD licenses. Such software is provided without warranty. Copies of these licenses are included in the software itself in further detail. For the latest up to date information, please visit our Github Repository at https://github.com/austral-electronics/ThunderballH7*
