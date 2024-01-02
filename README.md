@@ -209,6 +209,9 @@ make
 make FLASH=Y
  ```
 ### 4.5. Debug the application using the ST-LINK/V2 <a name="debug"></a>
+
+[![ThunderballH7_web_page](/SDK/images/ThunderballH7_debug.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+
 - Cut off power supply
 - Connect the ST-LINK/V2 probe to the JST JTAG/SWD connector (See the datasheet).  
 - Power the ThunderballH7
