@@ -69,8 +69,8 @@ It will be embedded into a third-party system in a harsh environment, like weara
  - **Note**  
 ST offers [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) as code editor, it is the easy way to code rapidly.  
 VSCode is the preferred tool for companies and professionals working on different platforms, OS and languages, especially for the large number of plug-ins and the dark mode. Tool installation on a VSCode SDK is considerably more laborious.  
-🔴🔴🔴 _**Installation of the SDK for VSCode has recently been simplified by the publication of a plugin for STM32.**_ 🔴🔴🔴  
-🔴🔴🔴 _**The documentation below does not take the new VSCode for STM32 plugin into account at present.**_ 🔴🔴🔴  
+🔴 _**Installation of the SDK for VSCode has recently been simplified by the publication of a plugin for STM32.**_ 🔴  
+🔴 _**The documentation below does not take the new VSCode for STM32 plugin into account at present.**_ 🔴  
     - [VSCode for STM32 extension 1.0.0 released](https://community.st.com/t5/other-tools-mcus/vscode-for-stm32-extension-1-0-0-released/td-p/143795)  
     - [STM32 for VSCode VSCode plugin](https://marketplace.visualstudio.com/items?itemName=bmd.stm32-for-vscode)  
     - [How to install the STM32 VS Code Extension?](https://www.youtube.com/watch?v=guNg5OVhakU)  
@@ -254,26 +254,64 @@ Then open a very simple web pages at 192.168.100.222 with any browser, you will 
   
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
- - **Test COM1**  
-[![ThunderballH7_web_page](/SDK/images/ThunderballH7_autotest.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+ - **Test COM1 RX & FRAM**  
+    - Connect COM1 of the thunderballH7 to a PC using a USB <->RS232 adapter  
+    - Open the device manager to see the COMx port name  
+    - Open a Console with PuTTY (Serial, COMx, 115200 bauds)  
+    - Power up the ThunderballH7, you must see in the serial console :  
 
+[![ThunderballH7_web_page](/SDK/images/ThunderballH7_autotest.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+ 
+ - **Test RTC, Backlight, COM1 TX/CTS/RTS**  
+    - Strap RTS to CTS on COM1  
+    - Press "space" in the serial console  
+    - You must see :  
+        - the time evolve  
+        - a toggle on the backlight  
+        - a toggle on the COM1 CTS  
+
+ - **Test COM2 to COM5 in RS422/RS485 mode**  
+    - A RS422 point-to-point cable (!!! with terminations and bias resistors !!!) is required to send data from TX+/TX- on one COM to RX+/RX- on another.  
+    - Connect TX side to COM2 and RX side to COM3 and press "space"  
+    - You must see "TX on COM2, RX on COM3 OK"  
+    - Strap the next COM ports and restart the test with "space" for the others 3 combinaisons.  
+      
+ - **Test COM2 to COM5 in RS232 RX only mode**  
+    - With a Binder 620 to RS232 RX only DB9 cable (see Datasheet for wiring) and another USB <->RS232 adapter  
+    - Open another PuTTY serial console (Serial, COMy, 115200 bauds)  
+    - Connect this cable to COM2  
+    - Send any character with this console, you must see "COM2:X" in the COM1 console  
+    - Test COM3 to COM5
+      
+ - **Test the bootloader software jump**  
+    - This method may be necessary on older hardware versions or products using the USB device mode, that do not set BOOT0 by powering with a USB-C cable.  
+    - Press 'b' in the COM1 console  
+    - Test the bootload with STM32CubeProgrammer  
 
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
- - **Change IP Address Settings**  
+With Windows Explorer, click "C:\git\ThunderballH7\ThunderballH7.ioc" to open CubeMX with the template configuration.  
+You'll certainly need to change IP, DMAs, Baudrates, Interrupts, FATFS, FREERTOS... in your application if you use this simple template as a basis.  
+The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described in the datasheet.  
+
+ - **Change IP Address Settings**
+   Change the settings in CubeMX->LWIP->General Settings
+  
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_STM32CubeMX.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
- - **Setup CubeMx for Ethernet option**  
-     - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
+ - **Modifications applied to source code after CubeMX automatic code generation:**
+
+    🔴 **This template was created in 2021 using "STM32CubeMX" 6.4.0 and "STM32Cube MCU Package for STM32H7" 1.9.1** 🔴  
+    🔴 **These versions are buggy (Ethernet, MPU_Config...) and have certainly been upgraded since** 🔴  
+    🔴 **Some modifications are probably no longer applicable with a newer package version** 🔴  
+
+    - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
        If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
     - Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:  
-      HTTPD_USE_CUSTOM_FSDATA 0
-
+       HTTPD_USE_CUSTOM_FSDATA 0  
     - Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
-
     - Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
-      If "fsdata.c" is hidden, right clic on project and the refresh.  
-
+       If "fsdata.c" is hidden, right clic on project and the refresh.  
     - In the main.c file replace MPU_Config function by this one:  
 ```
     void MPU_Config(void)
