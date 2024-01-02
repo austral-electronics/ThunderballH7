@@ -35,9 +35,9 @@ It will be embedded into a third-party system in a harsh environment, like weara
 4.2. [Change the IP Address](#ip)  
 4.3. [Modify and Compile the Web pages](#web)  
 4.4. [Compile the application](#compile)  
-4.5. [Debug the template using the ST-LINK/V2](#debug)  
-4.6. [Run the template using the USB Bootloader](#bootload)  
-4.7. [How to test a product with this autotest](#autotest)  
+4.5. [Debug the application using the ST-LINK/V2](#debug)  
+4.6. [Deploy an image using the USB Bootloader](#bootload)  
+4.7. [How to test a product with this Autotest](#autotest)  
 5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
 6. [FAQ & TROUBLESHOOTING](#faq)  
 7.1. [Ethernet not working](#ethernet)  
@@ -206,7 +206,7 @@ make
  ```
 make FLASH=Y
  ```
-### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
+### 4.5. Debug the application using the ST-LINK/V2 <a name="debug"></a>
 - Cut off power supply
 - Connect the ST-LINK/V2 probe to the JST JTAG/SWD connector (See the datasheet).  
 - Power the ThunderballH7
@@ -217,7 +217,9 @@ make FLASH=Y
 [How to place breakpoints and watch variables, stack and memory](https://www.youtube.com/watch?v=g2Kf6RbdrIs)  
 [VSCode Cortex-Debug Launch Configurations](https://www.electrorules.com/vscode-cortex-debug-launch-configurations/)  
 
-### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
+### 4.6. Deploy an image using the USB Bootloader <a name="bootload"></a>
+This procedure enables on-site software updates for prototypes and small series to be carried out by the customer or a technician, using a simple PC and USB cable.  
+
 [![ThunderballH7_STM32CubeProgrammer](/SDK/images/ThunderballH7_STM32CubeProgrammer.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 - Get a .bin image :
     - Compile the web pages and the application.  
@@ -229,13 +231,13 @@ make FLASH=Y
 - The backlight lights up for 2 seconds and you should hear the USB driver notification sound  
 - In STM32CubeProgrammer :
     - If required, select "USB" 
-    - In USB configuration -> Port you must have USBx displayed, you can refresh to see it  
+    - In USB configuration -> Port you must have USB1 displayed, you can refresh to see it  
     - Click on "Connect"  
     - Open the .bin file with "Memory & File editing" -> "Open file"  
     - Flash with "Download"  
 - Unplug the USB cable, an power up the supply.  
 
-### 4.7. How to test a product with this autotest <a name="autotest"></a>
+### 4.7. How to test a product with this Autotest <a name="autotest"></a>
 
 
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
