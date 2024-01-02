@@ -235,6 +235,11 @@ make FLASH=Y
 - Unplug the USB cable, an power up the supply.  
 
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
+
+[![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)  
+
+
+
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
 #### Setup CubeMx for Ethernet option
