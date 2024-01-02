@@ -19,7 +19,7 @@ It will be embedded into a third-party system in a harsh environment, like weara
 
 [Product Web Page](https://austral-eng.com/en/thunderball-h7-oem-industrial-marine-rugged-ip67-mission-calculator-iot-gateway/)  
 ## Table of contents
-1. [DATASHEET AND WIRING](#hardware)  
+1. [DATASHEETS](#hardware)  
 2. [ST AND VSCODE LINKS AND DOCUMENTATIONS](#st)  
 3. [INSTALL A VSCODE BASED SDK FOR STM32H7](#install)  
 3.1. [Note and requirement](#note)  
@@ -43,30 +43,25 @@ It will be embedded into a third-party system in a harsh environment, like weara
 7.1. [Ethernet not working](#ethernet)  
 8. [DISCLAIMERS](#disclamers)  
 
-## 1. DATASHEET AND WIRING <a name="hardware"></a>
-[Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
+## 1. DATASHEETS <a name="hardware"></a>
+[ThunderballH7 Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)  
+[STM32H743VIT6 Datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf) 
 
 ## 2. ST AND VSCODE LINKS AND DOCUMENTATIONS <a name="st"></a>  
- - **ST Tools**  
+ - **ST Tools Download**  
 [STM32 Embedded Software](https://www.st.com/en/embedded-software/stm32-embedded-software.html)  
 [STM32 MCUs Software development tools](https://community.st.com/t5/stm32-mcus-software-development/ct-p/mcu-software-development-tools)  
 [STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
 [Installing STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Installing_STM32CubeMonitor)  
-
 - **ST Tools Tutorials**  
 [Introduction to STM32CubeMX](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Category:STM32CubeMX)  
 [Introduction to STM32Cube Expansion Packages](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Introduction_to_STM32Cube_Expansion_Packages)  
 [Introduction and main principles of STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Introduction_and_main_principles_of_STM32CubeMonitor)
-
-- **STM32H743VIT6 Datasheet**  
-[STM32H743 Datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf)  
-
-- **ST STM32H743 Software Examples**
+- **ST STM32H743 Software Examples**  
 [NUCLEO-H743ZI](https://github.com/STMicroelectronics/STM32CubeH7/tree/master/Projects/NUCLEO-H743ZI)  
-[STM32H743I-EVAL](https://github.com/STMicroelectronics/STM32CubeH7/tree/master/Projects/STM32H743I-EVAL)
-
+[STM32H743I-EVAL](https://github.com/STMicroelectronics/STM32CubeH7/tree/master/Projects/STM32H743I-EVAL)  
 - **VSCode Tutorials and plugins**  
-[Get started with VSCode](https://code.visualstudio.com/docs)
+[Get started with VSCode](https://code.visualstudio.com/docs)  
 [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/vscode)  
 
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
@@ -197,9 +192,25 @@ cd .\Middlewares\Third_Party\LwIP\src\apps\http\
 cd ../../../../../..
 ``` 
 ### 4.4. Compile the application <a name="compile"></a>
-1. make or make FLASH=Y to compile project and deploy project in the target
-   
+ - **Clean and recompile the entire project**
+ ```
+make clean
+make -j8 all
+ ```
+ - **Compile modified parts of the project**
+ ```
+make
+ ```
+ - **Compile and flash the STM32 using the JTAG/SWD tool**
+ ```
+make FLASH=Y
+ ```
 ### 4.5. Debug the template using the ST-LINK/V2 <a name="debug"></a>
+
+Cut off power supply and see the datasheet to connect the ST-LINK/V2 probe to the JST JTAG/SWD connector.  
+
+
+
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
