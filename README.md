@@ -46,18 +46,28 @@ It will be embedded into a third-party system in a harsh environment, like weara
 ## 1. DATASHEET AND WIRING <a name="hardware"></a>
 [Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)
 
-## 2. ST AND VSCODE LINKS AND DOCUMENTATIONS <a name="st"></a>
+## 2. ST AND VSCODE LINKS AND DOCUMENTATIONS <a name="st"></a>  
+ - **ST Tools**  
 [STM32 Embedded Software](https://www.st.com/en/embedded-software/stm32-embedded-software.html)  
 [STM32 MCUs Software development tools](https://community.st.com/t5/stm32-mcus-software-development/ct-p/mcu-software-development-tools)  
 [STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
 [Installing STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Installing_STM32CubeMonitor)  
 
+- **ST Tools Tutorials**  
 [Introduction to STM32CubeMX](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Category:STM32CubeMX)  
 [Introduction to STM32Cube Expansion Packages](https://wiki.stmicroelectronics.cn/stm32mcu/wiki/Introduction_to_STM32Cube_Expansion_Packages)  
-[Introduction and main principles of STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Introduction_and_main_principles_of_STM32CubeMonitor)   
+[Introduction and main principles of STM32CubeMonitor](https://wiki.st.com/stm32mcu/wiki/STM32CubeMonitor:Introduction_and_main_principles_of_STM32CubeMonitor)
+
+- **STM32H743VIT6 Datasheet**  
 [STM32H743 Datasheet](https://www.st.com/resource/en/datasheet/stm32h743vi.pdf)  
 
-[Get started with VSCode](https://code.visualstudio.com/docs) 
+- **ST STM32H743 Software Examples**
+[NUCLEO-H743ZI](https://github.com/STMicroelectronics/STM32CubeH7/tree/master/Projects/NUCLEO-H743ZI)  
+[STM32H743I-EVAL](https://github.com/STMicroelectronics/STM32CubeH7/tree/master/Projects/STM32H743I-EVAL)
+
+- **VSCode Tutorials and plugins**  
+[Get started with VSCode](https://code.visualstudio.com/docs)
+[Extensions for Visual Studio Code](https://marketplace.visualstudio.com/vscode)  
 
 ## 3. INSTALL A VSCODE BASED SDK FOR STM32H7 <a name="install"></a>
 ### 3.1. Note and requirement <a name="note"></a>
