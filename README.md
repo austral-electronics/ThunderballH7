@@ -218,15 +218,22 @@ make FLASH=Y
 [VSCode Cortex-Debug Launch Configurations](https://www.electrorules.com/vscode-cortex-debug-launch-configurations/)  
 
 ### 4.6. Run the template using the USB Bootloader <a name="bootload"></a>
+- Get a .bin image :
+    - Compile the web pages and the application.  
+    - The image generated is in "C:\git\ThunderballH7\build\ThunderballH7.bin"  
+    - There is also a precompiled test image in "C:\git\ThunderballH7\SDK\Bin\ThunderballH7_autotest.bin"  
+- Cut off power supply  
+- Launch the STM32CubeProgrammer Software  
+- Connect a USB-A to USB-C cable between PC and ThunderballH7  
+- The backlight lights up for 2 seconds and you should hear the USB driver notification sound  
+- In STM32CubeProgrammer :
+    - If required, select "USB" 
+    - In USB configuration -> Port you must have USBx displayed, you can refresh to see it  
+    - Click on "Connect"  
+    - Open the .bin file with "Memory & File editing" -> "Open file"  
+    - Flash with "Download"  
+- Unplug the USB cable, an power up the supply.  
 
-Compile the web pages and the application.  
-The image generated is in "C:\git\ThunderballH7\build\ThunderballH7.bin"  
-There is also a precompiled test image in "C:\git\ThunderballH7\SDK\Bin\ThunderballH7_autotest.bin"  
-- Cut off power supply
-- Launch the STM32CubeProgrammer Software
-- Connect a USB-A to USB-C cable between PC and ThunderballH7
-- You should hear the USB driver notification sound
-- 
 ### 4.7. How to test a product with this autotest <a name="autotest"></a>
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
