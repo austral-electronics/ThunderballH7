@@ -160,10 +160,7 @@ int main(void)
     JumpToBootloader();             // Bootload
 #endif
 
-  HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 issue, A tempo may be need here or in lan8742.C. We are waiting an official cubeMX fix from ST !!!!
-                         // see https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767
-                         // The duration is depending of the driver version, reset vs power up and of the ethernet switch (100MB or 1GB)
-                         // Without this tempo Ethernet will be at 10Mbs from SWD debug reset and ethernet operation will not be ensured from a power up.
+  HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negitiationissue, see FAQ in readme.md !!!!
 
   /* USER CODE END SysInit */
 
@@ -190,9 +187,6 @@ int main(void)
 
   aFramInit(hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin);
 
-
-//  HAL_Delay(2000);       // see https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767
-                         // May be need depending of the driver version and the ethernet switch, we are waiting an official fix from ST 
 //  MX_LWIP_Init();
   httpd_init();   
   http_server_init();
