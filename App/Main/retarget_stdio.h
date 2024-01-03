@@ -1,10 +1,10 @@
 /**
  * --------------------------------------------------------------------
- * @file    boot.h
+ * @file    retarget_stdio.h
  * @author  Austral Electronics
  * @version V1.0
  * @date    14/04/2022
- * @brief   Thunderball H7 Bootload functions
+ * @brief   Thunderball H7 Retarget stdio functions
  * -------------------------------------------------------------------- */
 
 
