@@ -38,8 +38,10 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 App/Web/http_ssi.c \
+App/Main/autotest.c \
+App/Main/boot.c \
+App/Main/fram.c \
 Core/Src/main.c \
-Core/Src/fram.c \
 Core/Src/syscalls.c \
 Core/Src/stm32h7xx_it.c \
 Core/Src/stm32h7xx_hal_msp.c \
@@ -171,9 +173,7 @@ startup_stm32h743xx.s
 # binaries
 #######################################
 GCC_PATH = ..\\toolchain\\gcc-arm-none-eabi-10.3-2021.10\\bin\\
-# GCC_PATH = ..\toolchain\9-2020-q2-update\bin
-# GCC_PATH = ..\\toolchain\\9-2020-q2-update\\bin
-# GCC_PATH = ../toolchain/9-2020-q2-update/bin
+
 PREFIX = arm-none-eabi-
 # The gcc compiler bin path can be either defined in make command via GCC_PATH variable (> make GCC_PATH=xxx)
 # either it can be added to the PATH environment variable.
@@ -223,6 +223,7 @@ AS_INCLUDES =
 # C includes
 C_INCLUDES =  \
 -IApp/Web \
+-IApp/Main \
 -ILWIP/App \
 -ILWIP/Target \
 -ICore/Inc \

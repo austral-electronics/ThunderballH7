@@ -26,9 +26,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "fram.h"
-#include "lwip/apps/httpd.h"
-#include <math.h> 
+
+    #include "common.h"
+
+UART_HandleTypeDef huart2;
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +44,14 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+__attribute__((weak)) void _fstat_r(void){}
+__attribute__((weak)) void _getpid_r(void){}
+__attribute__((weak)) void _isatty_r(void){}
+__attribute__((weak)) void _kill_r(void){}
+__attribute__((weak)) void _close(void){}
+__attribute__((weak)) void _lseek(void){}
+__attribute__((weak)) void _read(void){}
+__attribute__((weak)) void _write(void){}
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -94,29 +103,13 @@ static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
 
 //#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+static void MPU_Config_ThunderballH7(void);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 extern struct netif gnetif; /* network interface structure */
-
-void JumpToBootloader(void)
-{
-    void (*SysMemBootJump)(void);
-    volatile uint32_t BootAddr = 0x1FF09800;  // Bootloader Address
-    __disable_irq();                          // Disable all interrupts
-    SysTick->CTRL = 0;                        // Disable Systick timer
-    HAL_RCC_DeInit();                         // Set the clock to the default state
-    for (uint32_t i=0;i<5;i++) {              // Clear Interrupt Enable Register & Interrupt Pending Register
-	    NVIC->ICER[i]=0xFFFFFFFF;
-	    NVIC->ICPR[i]=0xFFFFFFFF;
-     }	
-     __enable_irq();                          // Re-enable all interrupts
-     SysMemBootJump = (void (*)(void)) (*((uint32_t *) ((BootAddr + 4))));  // Set up the jump to booloader address + 4
-     __set_MSP(*(uint32_t *)BootAddr);        // Set the main stack pointer to the bootloader stack
-     SysMemBootJump();                        // Call the function to jump to bootloader location
-}
 
 /* USER CODE END 0 */
 
@@ -127,6 +120,12 @@ void JumpToBootloader(void)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
+    MPU_Config_ThunderballH7();
+    SCB_EnableICache();
+    SCB_EnableDCache();
+    HAL_Init();
+    goto USER_CODE_BEGIN_Init;
 
   /* USER CODE END 1 */
 
@@ -145,23 +144,35 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+USER_CODE_BEGIN_Init:
   /* USER CODE END Init */
 
   /* Configure the system clock */
    SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
-#ifdef BOOTLOAD
+    #ifdef BOOTLOAD
+        MX_GPIO_Init();
+        JumpToBootloader();             // Bootload
+    #endif
+    HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negitiationissue, see FAQ in readme.md !!!!
     MX_GPIO_Init();
-    //    MX_RTC_Init();
-    for (uint32_t i=0;i<21;i++) {for (uint64_t j=0;j<10000000;j++) {} HAL_GPIO_TogglePin(CMD_LED_GPIO_Port, CMD_LED_Pin);} // Blink Backlight
-    JumpToBootloader();             // Bootload
-#endif
-
-  HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negitiationissue, see FAQ in readme.md !!!!
-
+    MX_SPI1_Init();
+    MX_ADC1_Init();
+    MX_FDCAN1_Init();
+    MX_SPI4_Init();
+    MX_TIM2_Init();
+    MX_TIM4_Init();
+    MX_TIM5_Init();
+    MX_UART4_Init();
+    MX_UART5_Init();
+    MX_UART7_Init();
+    MX_UART8_Init();
+    MX_USART2_UART_Init();
+    MX_USART3_UART_Init();
+    //MX_USB_OTG_FS_PCD_Init();
+    MX_RTC_Init();
+    goto USER_CODE_BEGIN_2;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -180,52 +191,16 @@ int main(void)
   MX_UART8_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
-  //MX_USB_OTG_FS_PCD_Init();
+  MX_USB_OTG_FS_PCD_Init();
   MX_RTC_Init();
 
   /* USER CODE BEGIN 2 */
-
-  aFramInit(hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin);
-
-//  MX_LWIP_Init();
-  httpd_init();   
-  http_server_init();
-
-//------------------ Autotest-----------------------//
-
-    // USE :open a console on COM1 at 115200 bauds with putty to interact with the stdio flow of this autotest
-    printf("\n\rThunderball H7 - Very simple autotest\n\r");
-
-    // Test FRAM with 4 bytes
-    printf("FRAM Write32 0xDEADBEEF.......");
-    uint32_t rx=0xDEADBEEF;
-    aFramWrite32(0x10, rx);
-    rx=0;   
-    aFramRead(0x10, &rx, sizeof(rx));
-    if (rx==0xDEADBEEF) printf("OK\n\r");
-    else printf("!!!! Error %lx!!!!\n\r",rx);
-
-    // Test FRAM with uint32_t
-    printf("FRAM uint32_t 0x4321CAFE......");
-    rx=0x4321CAFE;
-    aFramWrite(0x07F0, &rx, sizeof(rx));
-    rx=0;   
-    aFramRead(0x07F0, &rx, sizeof(rx));
-    if (rx==0x4321CAFE) printf("OK\n\r");
-    else printf("!!!! Error %lx!!!!\n\r",rx);
-
-    // Test FRAM with float
-    float f=3.14159;
-    printf("FRAM float 3.14159............");
-    aFramWrite(0x07F0, &f, sizeof(f));
-    f=0.0;
-    aFramRead(0x07F0, &f, sizeof(f));
-    if (fabs(f-3.14159)<1E-6) printf("OK\n\r");
-    else printf("!!!! Error !!!!\n\r");
-//    HAL_Delay(100);
-
-    printf("\n\rPress 'space' in the console to test serials, 'b' to jump to the bootloader\n\r");
-    uint8_t Rx_data[10];  //  creating a buffer of 10 bytes
+  
+USER_CODE_BEGIN_2:
+    MX_LWIP_Init();
+    httpd_init();   
+    http_server_init();
+    AutotestFram();
 
   /* USER CODE END 2 */
 
@@ -233,110 +208,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // Ethernet pooling
-	  ethernetif_input(&gnetif);
-	  sys_check_timeouts();
-
-    // AUTOTEST : COM5 (huart2) RS232_RX test
-    // USE : Open a second putty console at 115Kb and connect it to COM2..5 with wiring for RS232_RX, send somes characters, they will be displayed on the COM1 console
-    if (HAL_UART_Receive(&huart2, Rx_data, 1, 0) == HAL_OK) printf("COM5 : %c\n\r",Rx_data[0]);
-
-    // AUTOTEST : COM4 (huart5) RS232_RX test 
-    if (HAL_UART_Receive(&huart5, Rx_data, 1, 0) == HAL_OK) printf("COM4 : %c\n\r",Rx_data[0]);
-
-    // AUTOTEST : COM3 (huart4) RS232_RX test
-    if (HAL_UART_Receive(&huart4, Rx_data, 1, 0) == HAL_OK) printf("COM3 : %c\n\r",Rx_data[0]);
-
-    // AUTOTEST : COM2 (huart3) RS232_RX test
-    if (HAL_UART_Receive(&huart3, Rx_data, 1, 0) == HAL_OK) printf("COM2 : %c\n\r",Rx_data[0]);
-
-    // AUTOTEST : COM1 (huart7) Autotest Console (press space or 'b' in the COM1 putty console)
-    if (HAL_UART_Receive(&huart7, Rx_data, 1, 0) == HAL_OK) {
-
-/*        if (Rx_data[0]=='l') {              // measure power in sleep mode
-            HAL_SuspendTick();
-            HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
-        }*/
-
-        // AUTOTEST : Call to the Bootloader Test
-        // USE : press 'b' in the COM1 console.
-        if (Rx_data[0]=='b') {
-            printf("\n\r!!!! Launch the Bootloader : Use STM32CubeProgrammer and a USB-C cable to bootload a .bin firmware !!!");
-            JumpToBootloader();             // Bootload
-        }
-
-        if (Rx_data[0]==' ') {
-            // AUTOTEST : RTC Test
-            // USE : the time should change each time you press the space bar in the COM1 console.
-            RTC_TimeTypeDef sTime = {0};
-            if (HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN)== HAL_OK) {         // Display time
-                RTC_DateTypeDef sDate = {0};
-                HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN); // Unlock RTC
-                printf("\n\rTime: %lu:%lu:%lu\n\r",(uint32_t) (sTime.Hours),(uint32_t) (sTime.Minutes),(uint32_t) (sTime.Seconds));
-            } else printf("RTC error\n\r");
-
-            // AUTOTEST : RTS and Backlight Test
-            // USE : Strap RTS to CTS on COM1, CTS and the Backlight have to change state every time you press the space bar in the COM1 console.
-            HAL_GPIO_TogglePin(UART7_RTS_GPIO_Port, UART7_RTS_Pin); // Toggle RTS
-            HAL_GPIO_TogglePin(CMD_LED_GPIO_Port, CMD_LED_Pin);     // Toggle backlight
-            printf("Toggle COM1_RTS & Backlight\n\r");
-            if (HAL_GPIO_ReadPin(UART7_CTS_GPIO_Port, UART7_CTS_Pin))   printf("COM1 CTS = 1\n\r");
-            else                                                        printf("COM1 CTS = 0\n\r");
-
-            // AUTOTEST : TX on COM2 (huart3) , RX on COM3 (huart4)
-            // USE : Wire a RS422 point-to-point cable (!!! with terminations and bias resistors !!!) to send data from TX+/TX- on one COM to RX+/RX- on another.
-            //       Connect the TX side of this cable to COM2 and the Rx side to COM3, Press the space bar on the COM1 console, you must see 'TX on COM2, RX on COM3 OK'
-            //       Move this cable and press the space bar to test the following COM ports
-            char *msg = "2";
-            HAL_UART_Receive(&huart4, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart3, (uint8_t*)msg, strlen(msg), 0xFFFF);
-	        if (HAL_UART_Receive(&huart4, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='2') printf("TX on COM2, RX on COM3 OK\n\r");
-                else  {
-                    __HAL_UART_CLEAR_OREFLAG(&huart4);
-                    printf("TX on COM2, RX on COM3 !!!!Error !!!!\n\r");
-                }
-            } else printf("TX on COM2, RX on COM3 !!!!Error !!!!\n\r");
-
-            // AUTOTEST : TX on COM3 (huart4) , RX on COM4 (huart5)
-            msg = "3";
-            HAL_UART_Receive(&huart5, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart4, (uint8_t*)msg, strlen(msg), 0xFFFF);
-	        if (HAL_UART_Receive(&huart5, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='3') printf("TX on COM3, RX on COM4 OK\n\r");
-                else  {
-                    __HAL_UART_CLEAR_OREFLAG(&huart5);
-                    printf("TX on COM3, RX on COM4 !!!!Error !!!!\n\r");
-                }
-            } else printf("TX on COM3, RX on COM4 !!!!Error !!!!\n\r");
-
-            // AUTOTEST : TX on COM4 (huart5) , RX on COM5 (huart2)
-            msg = "4";
-            HAL_UART_Receive(&huart2, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart5, (uint8_t*)msg, strlen(msg), 0xFFFF);
-	        if (HAL_UART_Receive(&huart2, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='4') printf("TX on COM4, RX on COM5 OK\n\r");
-                else  {
-                    __HAL_UART_CLEAR_OREFLAG(&huart2);
-                    printf("TX on COM4, RX on COM5 !!!!Error !!!!\n\r");
-                }
-            } else printf("TX on COM4, RX on COM5 !!!!Error !!!!\n\r");
-
-            // AUTOTEST : TX on COM5 (huart5), RX on COM2 (huart3)
-            msg = "5";
-            HAL_UART_Receive(&huart3, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
-	        if (HAL_UART_Receive(&huart3, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='5') printf("TX on COM5, RX on COM2 OK\n\r");
-                else  {
-                    __HAL_UART_CLEAR_OREFLAG(&huart3);
-                    printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
-                }
-            } else printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
-        }
-    }
-
-    //    HAL_Delay(100);
+    ethernetif_input(&gnetif);      // Ethernet pooling
+    sys_check_timeouts();
+    AutotestPooling();              // Autotest pooling
 
     /* USER CODE END WHILE */
 
@@ -1265,26 +1139,14 @@ static void MX_GPIO_Init(void)
   * @brief  Retargets the C library printf function to the USART.
   * @param  None
   * @retval None
-  *
-
-//PUTCHAR_PROTOTYPE
-//{
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART7 and Loop until the end of transmission */
-//  HAL_UART_Transmit(&huart7, (uint8_t *)&ch, 1, 0xFFFF);
-
-//  return ch;
-//}
-
+  */
 __attribute__((weak)) int __io_putchar(int ch)
 {
     HAL_StatusTypeDef status = HAL_UART_Transmit(&huart7, (uint8_t *)&ch, 1, 0xFFFF);
     return (status == HAL_OK ? ch : 0);
 }
 
-/* MPU Configuration -> !!!!! Rename MPU_Config() generated by cubeMX in MPU_Config_Orig()!!!! */
-
-void MPU_Config(void)
+void MPU_Config_ThunderballH7(void)
 {
 	MPU_Region_InitTypeDef MPU_InitStruct;
 
@@ -1344,7 +1206,7 @@ void MPU_Config(void)
 
 /* MPU Configuration */
 
-void MPU_Config_Old(void)
+void MPU_Config(void)
 {
   MPU_Region_InitTypeDef MPU_InitStruct = {0};
 
