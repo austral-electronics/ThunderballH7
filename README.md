@@ -147,7 +147,7 @@ Built for x86_64-w64-mingw32
 ### 3.8. Install debug tools <a name="debug_tools"></a>
 [Install PuTTY](https://www.putty.org/)    
 
-### 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
+## 4. EVALUATE THE AUTOTEST TEMPLATE <a name="test"></a>
 ### 4.1. Note and requirement <a name="note_autotest"></a>
  - **Note**  
    This template is intentionally as simple as possible, it is a bare metal example, without DMA or interrupt, using the STM32CubeMX Code Generator for peripherals configuration.  
@@ -375,6 +375,7 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
         }
 ```
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
+
 ### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
 ST [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :
 - We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 163) or in lan8742.C (Depending of the package version).
@@ -396,7 +397,8 @@ The USB bootload stops during flashing when the bootload launch was done with a 
 We have found that performing a "Verify" before "Download" significantly improves the probability of success.  
 🟢 It works properly with an hardware launch when powering using USB-C (when BOOT0 is maintained at 1 the entire flashing procedure) 🟢   
 
-### 7. TUTORIALS <a name="tuto"></a>
+## 7. TUTORIALS <a name="tuto"></a>
+
 ### 7.1. Ethernet <a name="ethernet_tuto"></a>  
 - **LwIP : Web Server, TCP, UDP, Ajax, CGI, SSI:**  
   [controllerstech.com](https://controllerstech.com/stm32-ethernet-tutorials/)  
@@ -406,7 +408,7 @@ We have found that performing a "Verify" before "Download" significantly improve
   [Mongoose Web Server documentation](https://mongoose.ws/documentation/)  
   [Mongoose Web Server templates for Nucleo-H743ZI2](https://mongoose.ws/documentation/#nucleo-h743zi2)  
    
-## 7. DISCLAIMERS <a name="disclamers"></a>
+## 8. DISCLAIMERS <a name="disclamers"></a>
 
 *Copyright (C) 2022 [Austral Electronics SARL](http://austral-eng.com/en/accueil-english-2/). Changes to the specifications and features in this manual may be made by Austral without prior notice. Specifications and information provided in this manual are for informational use only. Austral assumes no responsibility or liability for any errors or inaccuracies that may appear in this manual including the product & / or software. All trademarks mentioned in this manual are property of their respective owners. This product contains copyrighted software which are released under multiple open source licenses including but not limited to the GNU GPL, LGPL, and MIT BSD licenses. Such software is provided without warranty. Copies of these licenses are included in the software itself in further detail. For the latest up to date information, please visit our Github Repository at https://github.com/austral-electronics/ThunderballH7*
 
