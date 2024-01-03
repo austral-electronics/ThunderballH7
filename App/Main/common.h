@@ -30,6 +30,7 @@
 #include "autotest.h"
 #include "boot.h"
 #include "fram.h"
+#include "retarget_stdio.h"
 #include "http_ssi.h"
 
 #endif

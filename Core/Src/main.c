@@ -195,7 +195,7 @@ USER_CODE_BEGIN_Init:
   MX_RTC_Init();
 
   /* USER CODE BEGIN 2 */
-  
+
 USER_CODE_BEGIN_2:
     MX_LWIP_Init();
     httpd_init();   
@@ -1134,17 +1134,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-/**
-  * @brief  Retargets the C library printf function to the USART.
-  * @param  None
-  * @retval None
-  */
-__attribute__((weak)) int __io_putchar(int ch)
-{
-    HAL_StatusTypeDef status = HAL_UART_Transmit(&huart7, (uint8_t *)&ch, 1, 0xFFFF);
-    return (status == HAL_OK ? ch : 0);
-}
 
 void MPU_Config_ThunderballH7(void)
 {

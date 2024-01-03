@@ -41,6 +41,7 @@ App/Web/http_ssi.c \
 App/Main/autotest.c \
 App/Main/boot.c \
 App/Main/fram.c \
+App/Main/retarget_stdio.c \
 Core/Src/main.c \
 Core/Src/syscalls.c \
 Core/Src/stm32h7xx_it.c \
