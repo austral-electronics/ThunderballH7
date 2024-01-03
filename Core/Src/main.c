@@ -29,8 +29,6 @@
 
     #include "common.h"
 
-UART_HandleTypeDef huart2;
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,18 +38,12 @@ UART_HandleTypeDef huart2;
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-__attribute__((weak)) void _fstat_r(void){}
-__attribute__((weak)) void _getpid_r(void){}
-__attribute__((weak)) void _isatty_r(void){}
-__attribute__((weak)) void _kill_r(void){}
-__attribute__((weak)) void _close(void){}
-__attribute__((weak)) void _lseek(void){}
-__attribute__((weak)) void _read(void){}
-__attribute__((weak)) void _write(void){}
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -102,7 +94,6 @@ static void MX_USB_OTG_FS_PCD_Init(void);
 static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
 
-//#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
 static void MPU_Config_ThunderballH7(void);
 
 /* USER CODE END PFP */
