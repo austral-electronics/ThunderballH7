@@ -399,7 +399,14 @@ We have found that performing a "Verify" before "Download" significantly improve
 
 ## 7. TUTORIALS <a name="tuto"></a>
 
+### 7.2. FreeRTOS <a name="freertos_tuto"></a>  
+[FreeRTOS emcraft](https://www.emcraft.com/products/1090#freertos)  
+
 ### 7.1. Ethernet <a name="ethernet_tuto"></a>  
+
+- **HTML, CCS, JS:**
+  [HTML w3schools.com](https://www.w3schools.com/html/default.asp)
+  
 - **LwIP : Web Server, TCP, UDP, Ajax, CGI, SSI:**  
   [controllerstech.com](https://controllerstech.com/stm32-ethernet-tutorials/)  
 
