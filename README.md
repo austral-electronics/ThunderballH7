@@ -109,15 +109,15 @@ Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay i
  - Install somes plugins :  
     - [C/C++ for Visual Studio Code](https://code.visualstudio.com/docs/languages/cpp)  
     - [Cortex Debug](https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug)  
-    - [MemoryView](https://marketplace.visualstudio.com/items?itemName=mcu-debug.memory-view)
-    - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
-    - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
-
+    - [MemoryView](https://marketplace.visualstudio.com/items?itemName=mcu-debug.memory-view)  
+    - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)  
+    - [~~GitLens~~](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+ 
 ### 3.4. Install ST STM32 Tools <a name="st_tools"></a>
  - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html)  
  - [Install the STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
  - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html)  
- - [Install STM32 ST-LINK Utility](https://www.st.com/en/development-tools/stsw-link004.html)
+ - [~~Install STM32 ST-LINK Utility~~](https://www.st.com/en/development-tools/stsw-link004.html)
 
 ### 3.5. Install the compilation toolchain <a name="toolchain"></a>
  - [Download the Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
