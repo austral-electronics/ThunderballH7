@@ -323,15 +323,16 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
 [STM32 MCUs Embedded software Forum](https://community.st.com/t5/stm32-mcus-embedded-software/bd-p/mcu-embedded-software-forum)  
 
 ### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
-There are 2 Ehernet driver problems (H743 too fast & auto-negociation) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :  
+There are 2 Ethernet driver problems (H743 too fast for LAN8742 & auto-negociation) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :  
 - [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767)  
 - [Ethernet low_level_init does not handle return code from LAN8742_init](https://github.com/STMicroelectronics/STM32CubeH7/issues/261)  
 - [LAN8742 startup issue](https://community.st.com/t5/stm32cubemx-mcus/h743-and-lan8742-init/m-p/570179)
 
 Waiting for an official Fix from ST :
-- We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 149) or in lan8742.C (Depending of the package version).
-- The duration is depending of the soft reset vs power up and of the ethernet switch auto-negotiation time (switch model, 100MB or 1GB)
-- Without this tempo Ethernet will be at 10Mbs from SWD debug reset and ethernet operation will not be ensured from a power up.
+- We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 149)
+- Without this tempo, Ethernet will be at 10Mbs from SWD debug reset and ethernet operation will not be ensured from a power up  
+- The duration is depending of the soft reset vs power up and of the ethernet switch auto-negotiation time (switch model, 100MB or 1GB)  
+- Note : A delay may be already in lan8742.c on a newer package  
 
 To configure cubeMX, read the ST tutorials :  
 - https://community.st.com/t5/stm32-mcus/how-to-create-project-for-stm32h7-with-ethernet-and-lwip-stack/ta-p/49308  
