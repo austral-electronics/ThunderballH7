@@ -320,14 +320,20 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
 
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
 
+[STM32 MCUs Embedded software Forum](https://community.st.com/t5/stm32-mcus-embedded-software/bd-p/mcu-embedded-software-forum)  
+
 ### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
-ST [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :
-- We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 163) or in lan8742.C (Depending of the package version).
-- We are waiting an official cubeMX fix from ST.
-- The duration is depending of the driver version, reset vs power up and of the ethernet switch auto-negotiation time (model, 100MB or 1GB)
+There are 2 Ehernet driver problems (H743 too fast & auto-negociation) using the "STM32Cube MCU Package for STM32H7" version 1.9.1 :  
+- [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767)  
+- [Ethernet low_level_init does not handle return code from LAN8742_init](https://github.com/STMicroelectronics/STM32CubeH7/issues/261)  
+- [LAN8742 startup issue](https://community.st.com/t5/stm32cubemx-mcus/h743-and-lan8742-init/m-p/570179)
+
+Waiting for an official Fix from ST :
+- We had to introduce a delay of 500 to 1500ms at the boot (main.c, line 149) or in lan8742.C (Depending of the package version).
+- The duration is depending of the soft reset vs power up and of the ethernet switch auto-negotiation time (switch model, 100MB or 1GB)
 - Without this tempo Ethernet will be at 10Mbs from SWD debug reset and ethernet operation will not be ensured from a power up.
 
-The ST tutorials :  
+To configure cubeMX, read the ST tutorials :  
 - https://community.st.com/t5/stm32-mcus/how-to-create-project-for-stm32h7-with-ethernet-and-lwip-stack/ta-p/49308  
 - https://community.st.com/t5/stm32-mcus/ethernet-not-working-on-stm32h7x3/ta-p/49479  
 - https://github.com/stm32-hotspot/STM32H7-LwIP-Examples  
@@ -344,6 +350,7 @@ We have found that performing a "Verify" before "Download" significantly improve
 ## 7. TUTORIALS <a name="tuto"></a>
 
 ### 7.2. FreeRTOS <a name="freertos_tuto"></a>  
+[UM1722](https://www.st.com/resource/en/user_manual/um1722-developing-applications-on-stm32cube-with-rtos-stmicroelectronics.pdf)  
 [FreeRTOS emcraft](https://www.emcraft.com/products/1090#freertos)  
 
 ### 7.1. Ethernet <a name="ethernet_tuto"></a>  
