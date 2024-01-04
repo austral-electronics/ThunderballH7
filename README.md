@@ -310,13 +310,13 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
     🔴 **Some modifications are probably no longer applicable with a newer package version** 🔴  
 
     - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
-       If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
+       If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines (C_DEFS) of the makefile  
     - Use origin web page by diseabling custom web page (@ line 91) in file LWIP\Target\lwipopts.h:  
        HTTPD_USE_CUSTOM_FSDATA 0  
     - Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
     - Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
        If "fsdata.c" is hidden, right clic on project and the refresh.  
-    - Note : In the main.c file the "MPU_Config" function is replaced by "MPU_Config_ThunderballH7" using a few "goto".  
+    - Note : In the main.c file the buggy auto generate "MPU_Config" function is replaced by a working "MPU_Config_ThunderballH7" using a few "goto".  
 
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
 
