@@ -47,6 +47,7 @@ It will be embedded into a third-party system in a harsh environment, like weara
 7. [TUTORIALS](#tuto)  
 7.1. [Ethernet](#ethernet_tuto)  
 7.2. [FreeRTOS](#freertos_tuto)  
+7.3. [CANbus](#canbus_tuto)  
 8. [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEETS <a name="hardware"></a>
@@ -369,6 +370,9 @@ We have found that performing a "Verify" before "Download" significantly improve
 ### 7.2. FreeRTOS <a name="freertos_tuto"></a>  
 [UM1722](https://www.st.com/resource/en/user_manual/um1722-developing-applications-on-stm32cube-with-rtos-stmicroelectronics.pdf)  
 [FreeRTOS emcraft](https://www.emcraft.com/products/1090#freertos)  
+
+### 7.3. CANbus <a name="canbus_tuto"></a>  
+[FDCAN in Normal mode](https://controllerstech.com/fdcan-normal-mode-stm32/)  
 
 ## 8. DISCLAIMERS <a name="disclamers"></a>
 
