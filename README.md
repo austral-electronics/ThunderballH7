@@ -255,8 +255,8 @@ Connect the ThunderballH7 to an ethernet switch an power on
 Open a windows/VSCode terminal and test the ping : PING 192.168.100.222  
 Then open a very simple web pages at 192.168.100.222 with any browser, you will see a menu with 3 tabs:
     - A static page  
-    - A settings page  
-    - A dynamic page with variable refresh  
+    - A CGI page for your settings  
+    - A SSI dynamic page to display datas  
   
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
 
