@@ -40,11 +40,13 @@ It will be embedded into a third-party system in a harsh environment, like weara
 4.7. [How to test a product with this Autotest](#autotest)  
 5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
 6. [FAQ & TROUBLESHOOTING](#faq)  
-6.1. [Ethernet does not work properly](#ethernet_pb)  
-6.2. [RS485 does not work properly](#rs485_pb)  
-6.3. [USB Bootloader does not work properly](#bootload_pb)  
+6.1. [Forum](#forum)  
+6.2. [Ethernet does not work properly](#ethernet_pb)  
+6.3. [RS485 does not work properly](#rs485_pb)  
+6.4. [USB Bootloader does not work properly](#bootload_pb)  
 7. [TUTORIALS](#tuto)  
 7.1. [Ethernet](#ethernet_tuto)  
+7.2. [FreeRTOS](#freertos_tuto)  
 8. [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEETS <a name="hardware"></a>
@@ -320,9 +322,10 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
 
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
 
-[STM32 MCUs Embedded software Forum](https://community.st.com/t5/stm32-mcus-embedded-software/bd-p/mcu-embedded-software-forum)  
+### 6.1. Forum <a name="forum"></a>
+- [STM32 MCUs Embedded software Forum](https://community.st.com/t5/stm32-mcus-embedded-software/bd-p/mcu-embedded-software-forum)  
 
-### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
+### 6.2. Ethernet does not work properly <a name="ethernet_pb"></a>
 🔴 **There are 2 Ethernet driver bugs (H743 too fast & auto-negociation) in the "STM32Cube MCU Package for STM32H7" version 1.9.1 :** 🔴  
 - [PHY driver for LAN8742 issue](https://community.st.com/t5/stm32-mcus-embedded-software/stm32h7-phy-driver-for-lan8742-2s-delay/td-p/112767)  
 - [Ethernet low_level_init does not handle return code from LAN8742_init](https://github.com/STMicroelectronics/STM32CubeH7/issues/261)  
@@ -339,20 +342,16 @@ To configure cubeMX, read the ST tutorials :
 - https://community.st.com/t5/stm32-mcus/ethernet-not-working-on-stm32h7x3/ta-p/49479  
 - https://github.com/stm32-hotspot/STM32H7-LwIP-Examples  
 
-### 6.2. RS485 does not work properly <a name="rs485_pb"></a>
+### 6.3. RS485 does not work properly <a name="rs485_pb"></a>
 See Termination and biasing resistors problem on the datasheet  
 
-### 6.3. USB Bootloader does not work properly <a name="bootload_pb"></a>
+### 6.4. USB Bootloader does not work properly <a name="bootload_pb"></a>
 There is a new problem which appeared with STM32CubeProgrammer, this error has been [reported](https://community.st.com/t5/stm32cubeprogrammer-mcus/stm32cubeprogrammer-2-14-0-firmware-update-error-over-usb-in/td-p/601282) on the forums in October 2023.  
 The USB bootload stops during flashing when the bootload launch was done with a software jump.  
 We have found that performing a "Verify" before "Download" significantly improves the probability of success.  
 🟢 It works properly with an hardware launch when powering using USB-C (when BOOT0 is maintained at 1 the entire flashing procedure) 🟢   
 
 ## 7. TUTORIALS <a name="tuto"></a>
-
-### 7.2. FreeRTOS <a name="freertos_tuto"></a>  
-[UM1722](https://www.st.com/resource/en/user_manual/um1722-developing-applications-on-stm32cube-with-rtos-stmicroelectronics.pdf)  
-[FreeRTOS emcraft](https://www.emcraft.com/products/1090#freertos)  
 
 ### 7.1. Ethernet <a name="ethernet_tuto"></a>  
 
@@ -366,7 +365,11 @@ We have found that performing a "Verify" before "Download" significantly improve
   [Device Web UI dashboard: STM32 :: CubeIDE :: Bare metal :: HTTP, Websocket, MQTT](https://www.youtube.com/watch?v=8htC_TSBeO0)  
   [Mongoose Web Server documentation](https://mongoose.ws/documentation/)  
   [Mongoose Web Server templates for Nucleo-H743ZI2](https://mongoose.ws/documentation/#nucleo-h743zi2)  
-   
+
+### 7.2. FreeRTOS <a name="freertos_tuto"></a>  
+[UM1722](https://www.st.com/resource/en/user_manual/um1722-developing-applications-on-stm32cube-with-rtos-stmicroelectronics.pdf)  
+[FreeRTOS emcraft](https://www.emcraft.com/products/1090#freertos)  
+
 ## 8. DISCLAIMERS <a name="disclamers"></a>
 
 *Copyright (C) 2022 [Austral Electronics SARL](http://austral-eng.com/en/accueil-english-2/). Changes to the specifications and features in this manual may be made by Austral without prior notice. Specifications and information provided in this manual are for informational use only. Austral assumes no responsibility or liability for any errors or inaccuracies that may appear in this manual including the product & / or software. All trademarks mentioned in this manual are property of their respective owners. This product contains copyrighted software which are released under multiple open source licenses including but not limited to the GNU GPL, LGPL, and MIT BSD licenses. Such software is provided without warranty. Copies of these licenses are included in the software itself in further detail. For the latest up to date information, please visit our Github Repository at https://github.com/austral-electronics/ThunderballH7*
