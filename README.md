@@ -123,14 +123,20 @@ Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay i
  - [Download the Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
    select a Windows hosted cross toolchains for AArch32 bare-metal target (arm-none-eabi) in zip format  
    Note : This SDK is tested with [gcc-arm-none-eabi-10.3-2021.10-win32.zip](https://developer.arm.com/downloads/-/gnu-rm/10-3-2021-10)  
- - Unzip the Arm GNU Toolchain in the folder like "C:/git/toolchain". (Take care to replace space with '-' character in path directories)  
+ - Unzip the Arm GNU Toolchain in the folder like "C:/git/toolchain". (Take care to replace space with '-' character in path directories)
+ - Test the "gcc" link in a Windows console or in a VSCode Terminal
+```
+C:\git\ThunderballH7> ..\\toolchain\\gcc-arm-none-eabi-10.3-2021.10\\bin\\\arm-none-eabi-gcc -v
+...
+gcc version 10.3.1 20210824 (release) (GNU Arm Embedded Toolchain 10.3-2021.10)
+```
  - Download "make" for windows (binary & depedencies) from [The xPack Project](https://xpack.github.io/tags/windows-build-tools/)  
    Note :  
        - This SDK is tested with [xpack-windows-build-tools-4.2.1-2](https://xpack.github.io/tags/windows-build-tools/)  
        - You can also try the "make" from : http://gnuwin32.sourceforge.net/packages/make.htm  
  - Install the "xpack-windows-build-tools-XXX" directory in a folder like "C:/git/toolchain"
  - Add the path of "make" (C:\git\toolchain\xpack-windows-build-tools-XXX\bin) to [environment variables](https://phoenixnap.com/kb/windows-set-environment-variable) of Windows  
- - Test the make link in a Windows console or in a VSCode Terminal
+ - Test the "make" link in a Windows console or in a VSCode Terminal
 ```
 C:\git>make -v
 GNU Make 4.2.1
