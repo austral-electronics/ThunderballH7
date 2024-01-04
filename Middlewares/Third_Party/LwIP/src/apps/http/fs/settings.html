@@ -49,46 +49,16 @@
 	</div>
 
     <form action="/form.cgi">
-		<br>
-		<label for="C1Enable">Enable Port Com 2:</label>
-		<input type="checkbox" id="C1Enable" name="C1Enable" ><br>
-		<br>
-		<label for="fname">Protocol:</label>
-		<select id="fname" name="fname">
-			<option value="0">None</option>
-			<option value="1" selected>RS485</option>
-			<option value="2">RS422</option>
-			<option value="3">RS232_RX</option>
-		</select>
-		<br>
-		<label for="C1baudrate">Baudrate:</label>
-		<input type="text" id="C1baudrate" name="C1baudrate" value="115200">
-		<br>
-		<input type="submit" value="Submit"><br>
-		
-	</form>
-<!--
-	<form action="/com2.cgi">
-		<br>
-		<label for="C2Enable">Enable Port Com 3:</label>
-		<input type="checkbox" id="C2Enable" name="C2Enable" ><br>
-		<br>
-		<label for="fname">Protocol:</label>
-		<select id="fname" name="fname">
-			<option value="0">None</option>
-			<option value="1">RS485</option>
-			<option value="2">RS422</option>
-			<option value="3">RS232_RX</option>
-		</select>
-		<br>
-		<label for="C2baudrate">Baudrate:</label>
-		<input type="text" id="C1baudrate" name="C2baudrate" value="9600">
-		<br>
-		<input type="submit" value="Submit"><br>
-		
-	</form>
--->
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
+      </form> 
+
+    <a href="https://controllerstech.com/stm32-ethernet-6-2-http-webserver-cgi/">Link to CGI test tutorial</a>
 </body>
+
 </html>
 
 

@@ -188,8 +188,7 @@ USER_CODE_BEGIN_Init:
   /* USER CODE BEGIN 2 */
 
 USER_CODE_BEGIN_2:
-    MX_LWIP_Init();
-    httpd_init();   
+    MX_LWIP_Init(); 
     http_server_init();
     AutotestFram();
 

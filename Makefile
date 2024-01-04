@@ -37,7 +37,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-App/Web/http_ssi.c \
+App/Web/http_cgi_ssi.c \
 App/Main/autotest.c \
 App/Main/boot.c \
 App/Main/fram.c \
