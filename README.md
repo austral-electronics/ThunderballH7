@@ -311,69 +311,13 @@ The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described i
 
     - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
        If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines of the makefile  
-    - Use origin web page by diseabling custom web page (@ lign 91) in file LWIP\Target\lwipopts.h:  
+    - Use origin web page by diseabling custom web page (@ line 91) in file LWIP\Target\lwipopts.h:  
        HTTPD_USE_CUSTOM_FSDATA 0  
     - Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
     - Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
        If "fsdata.c" is hidden, right clic on project and the refresh.  
-    - In the main.c file replace MPU_Config function by this one:  
-```
-    void MPU_Config(void)
-    {
-        MPU_Region_InitTypeDef MPU_InitStruct;
+    - Note : In the main.c file the "MPU_Config" function is replaced by "MPU_Config_ThunderballH7" using a few "goto".  
 
-        /* Disables the MPU */
-        HAL_MPU_Disable();
-        /**Initializes and configures the Region and the memory to be protected 
-        */
-        MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-        MPU_InitStruct.Number = MPU_REGION_NUMBER2;
-        MPU_InitStruct.BaseAddress = 0x30040000;
-        MPU_InitStruct.Size = MPU_REGION_SIZE_256B;
-        MPU_InitStruct.SubRegionDisable = 0x0;
-        MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-        MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-        MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-        MPU_InitStrues and configures the Region and the memory to be protected 
-        */
-        MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-        MPU_InitStruct.Number = MPU_REGION_NUMBER1;
-        MPU_InitStruct.BaseAddress = 0x30044000;
-        MPU_InitStruct.Size = MPU_REGION_SIZE_16KB;
-        MPU_InitStruct.SubRegionDisable = 0x0;
-        MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-        MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-        MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
-
-        HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-        /**Initializct.TypeExtField = MPU_TEX_LEVEL0;
-        MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-        MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-        MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-        MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
-        MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
-
-        HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-        MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-        MPU_InitStruct.Number = MPU_REGION_NUMBER0;
-        MPU_InitStruct.BaseAddress = 0x30040000;
-        MPU_InitStruct.Size = MPU_REGION_SIZE_16KB;
-        MPU_InitStruct.SubRegionDisable = 0x0;
-        MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
-        MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-        MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-        MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-        MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-        MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
-        
-        HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-        /* Enables the MPU */
-        HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
-        }
-```
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
 
 ### 6.1. Ethernet does not work properly <a name="ethernet_pb"></a>
