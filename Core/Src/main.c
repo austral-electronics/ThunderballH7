@@ -165,6 +165,7 @@ USER_CODE_BEGIN_Init:
   /* USER CODE BEGIN 2 */
  
     http_server_init();
+    InitCAN();
     AutotestFram();
 
   /* USER CODE END 2 */

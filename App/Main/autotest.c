@@ -141,6 +141,9 @@ void AutotestPooling(void) {
                     printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
                 }
             } else printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
+
+            // AUTOTEST : Send a CANbus sentence
+            TransmitCAN_Test(&hfdcan1);
         }
     }
 }

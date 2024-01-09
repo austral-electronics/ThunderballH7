@@ -40,6 +40,7 @@ C_SOURCES =  \
 App/Web/http_cgi_ssi.c \
 App/Main/autotest.c \
 App/Main/boot.c \
+App/Main/canbus.c \
 App/Main/fram.c \
 App/Main/retarget_stdio.c \
 Core/Src/main.c \
