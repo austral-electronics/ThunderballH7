@@ -140,23 +140,8 @@ USER_CODE_BEGIN_Init:
         MX_GPIO_Init();
         JumpToBootloader();             // Bootload
     #endif
-    HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negitiationissue, see FAQ in readme.md !!!!
-    MX_GPIO_Init();
-    MX_SPI1_Init();
-    MX_ADC1_Init();
-    MX_FDCAN1_Init();
-    MX_SPI4_Init();
-    MX_TIM2_Init();
-    MX_TIM4_Init();
-    MX_TIM5_Init();
-    MX_UART4_Init();
-    MX_UART5_Init();
-    MX_UART7_Init();
-    MX_UART8_Init();
-    MX_USART2_UART_Init();
-    MX_USART3_UART_Init();
-    MX_RTC_Init();
-    goto USER_CODE_BEGIN_2;
+    HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negotiation issue, see FAQ in readme.md !!!!
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -177,9 +162,7 @@ USER_CODE_BEGIN_Init:
   MX_USART3_UART_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
-
-USER_CODE_BEGIN_2:
-    MX_LWIP_Init(); 
+ 
     http_server_init();
     AutotestFram();
 
