@@ -140,6 +140,7 @@ USER_CODE_BEGIN_Init:
         MX_GPIO_Init();
         JumpToBootloader();             // Bootload
     #endif
+    netif_set_hostname(&gnetif, "thunderball_h7");
     HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negotiation issue, see FAQ in readme.md !!!!
 
   /* USER CODE END SysInit */
@@ -235,7 +236,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.SYSCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV1;
+  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV2;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
