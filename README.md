@@ -280,7 +280,7 @@ Then open a very simple web pages at 192.168.100.222 with any browser, you will 
     - Press "space" in the serial console  
     - You must see :  
         - the time evolve  
-        - a toggle on the backlight  
+        - a toggle on the logo backlight  (Warning : There is another backlight toggle on CANbus Sentence Reception) 
         - a toggle on the COM1 CTS  
 
  - **Test COM2 to COM5 in RS422/RS485 mode**  
@@ -295,7 +295,14 @@ Then open a very simple web pages at 192.168.100.222 with any browser, you will 
     - Connect this RS232_RX cable to COM2  
     - Send any character with this COM2 console, you must see "COM2:x" in the COM1 console  
     - Test COM3 to COM5
-      
+
+ - **Test the CANbus**  
+    - Connect The Thunderball H7 and a CANBus/NMEA2000 Analyser to a small bus with a 12V power and terminators  
+    - Configure the Analyser at 250KBs, Extended_ID, Classic Mode  
+    - Press "space" in the COM1 serial console to send a sentence with PGN 127250 (Vessel Heading) and Heading=343 Degree Mag  
+    - Send a Sentence with the Analyser (or any NMEA2000 Instrument), you must see a toggle of the Logo backlight on each good reception  
+      Note : Set a Breakpoint in "App/Main/canbus.c" file and "HAL_FDCAN_RxFifo0Callback" function to verify the datas  
+     
  - **Test the bootloader software jump**  
     - This method may be necessary on products using the USB device port, that do not set BOOT0 by powering with a USB-C cable.  
     - Press 'b' in the COM1 console  
