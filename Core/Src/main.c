@@ -106,12 +106,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
-    MPU_Config_ThunderballH7();
-    SCB_EnableICache();
-    SCB_EnableDCache();
-    HAL_Init();
-    goto USER_CODE_BEGIN_Init;
-
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
@@ -129,7 +123,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-USER_CODE_BEGIN_Init:
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -137,11 +131,11 @@ USER_CODE_BEGIN_Init:
 
   /* USER CODE BEGIN SysInit */
     #ifdef BOOTLOAD
-        MX_GPIO_Init();
-        JumpToBootloader();             // Bootload
+        MX_GPIO_Init();             // Init GPIO for Backlight
+        JumpToBootloader();         // Launch USB Bootloader in ROM
     #endif
-    netif_set_hostname(&gnetif, "thunderball_h7");
-    HAL_Delay(1500);       // !!!! ST PHY driver for LAN8742 auto-negotiation issue, see FAQ in readme.md !!!!
+    netif_set_hostname(&gnetif, "ThunderballH7");   // LwIP : Set Host Name
+    HAL_Delay(1500);                // !!!! ST PHY driver for LAN8742 auto-negotiation issue, see FAQ in readme.md !!!!
 
   /* USER CODE END SysInit */
 
@@ -164,9 +158,9 @@ USER_CODE_BEGIN_Init:
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
  
-    http_server_init();
-    InitCAN();
-    AutotestFram();
+    http_server_init();             // Init Web server
+    InitCAN();                      // Init CANbus
+    AutotestFram();                 // Auto Test : Test FRAM
 
   /* USER CODE END 2 */
 
@@ -174,9 +168,9 @@ USER_CODE_BEGIN_Init:
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    ethernetif_input(&gnetif);      // Ethernet pooling
-    sys_check_timeouts();
-    AutotestPooling();              // Autotest pooling
+    ethernetif_input(&gnetif);      // Ethernet : Reception pooling
+    sys_check_timeouts();           // LwIP : Check 
+    AutotestPooling();              // Autotest : Test RTC, Serials, CANbus, Backlight
 
     /* USER CODE END WHILE */
 
@@ -1073,62 +1067,6 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void MPU_Config_ThunderballH7(void)
-{
-	MPU_Region_InitTypeDef MPU_InitStruct;
-
-	/* Disables the MPU */
-	HAL_MPU_Disable();
-	/**Initializes and configures the Region and the memory to be protected 
-	*/
-	MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-	MPU_InitStruct.Number = MPU_REGION_NUMBER2;
-	MPU_InitStruct.BaseAddress = 0x30040000;
-	MPU_InitStruct.Size = MPU_REGION_SIZE_256B;
-	MPU_InitStruct.SubRegionDisable = 0x0;
-	MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-	MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-	MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-	MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-	MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-	MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
-
-	HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-	/**Initializes and configures the Region and the memory to be protected 
-	*/
-	MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-	MPU_InitStruct.Number = MPU_REGION_NUMBER1;
-	MPU_InitStruct.BaseAddress = 0x30044000;
-	MPU_InitStruct.Size = MPU_REGION_SIZE_16KB;
-	MPU_InitStruct.SubRegionDisable = 0x0;
-	MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-	MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-	MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-	MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-	MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
-	MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
-
-	HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-	MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-	MPU_InitStruct.Number = MPU_REGION_NUMBER0;
-	MPU_InitStruct.BaseAddress = 0x30040000;
-	MPU_InitStruct.Size = MPU_REGION_SIZE_16KB;
-	MPU_InitStruct.SubRegionDisable = 0x0;
-	MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
-	MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-	MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-	MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-	MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-	MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
-	
-	HAL_MPU_ConfigRegion(&MPU_InitStruct);
-
-	/* Enables the MPU */
-	HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
-}
-
 /* USER CODE END 4 */
 
 /* MPU Configuration */
@@ -1144,11 +1082,11 @@ void MPU_Config(void)
   MPU_InitStruct.Enable = MPU_REGION_ENABLE;
   MPU_InitStruct.Number = MPU_REGION_NUMBER0;
   MPU_InitStruct.BaseAddress = 0x30040000;
-  MPU_InitStruct.Size = MPU_REGION_SIZE_32KB;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_16KB;
   MPU_InitStruct.SubRegionDisable = 0x0;
   MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL1;
   MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
   MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
   MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
@@ -1157,9 +1095,17 @@ void MPU_Config(void)
   /** Initializes and configures the Region and the memory to be protected
   */
   MPU_InitStruct.Number = MPU_REGION_NUMBER1;
-  MPU_InitStruct.Size = MPU_REGION_SIZE_256B;
+  MPU_InitStruct.BaseAddress = 0x30044000;
   MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-  MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER2;
+  MPU_InitStruct.BaseAddress = 0x30040000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_256B;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
   MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
 
   HAL_MPU_ConfigRegion(&MPU_InitStruct);
