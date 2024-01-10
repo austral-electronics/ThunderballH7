@@ -114,10 +114,10 @@ Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay i
     - [~~GitLens~~](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
  
 ### 3.4. Install ST STM32 Tools <a name="st_tools"></a>
- - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html)  
- - [Install the STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  
+ - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html) 🔴 Select CubeMX Version 6.4.0 🔴  
+ - [Install the STM32Cube MCU Package for STM32H7 series](https://www.st.com/en/embedded-software/stm32cubeh7.html)  🔴 If required : Select Version 1.9.1 🔴  
  - [Install STM32CubePrg-W64](https://www.st.com/en/development-tools/stm32cubeprog.html)  
- - [~~Install STM32 ST-LINK Utility~~](https://www.st.com/en/development-tools/stsw-link004.html)
+ - [~~Install STM32 ST-LINK Utility~~](https://www.st.com/en/development-tools/stsw-link004.html)  
 
 ### 3.5. Install the compilation toolchain <a name="toolchain"></a>
  - [Download the Arm GNU Toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
@@ -303,29 +303,34 @@ Then open a very simple web pages at 192.168.100.222 with any browser, you will 
 
 ## 5. MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX <a name="cubemx"></a>
 
+🔴 **This template was created in early 2022 using "STM32CubeMX" 6.4.0 and "STM32Cube MCU Package for STM32H7" 1.9.1** 🔴  
+    
+**These versions contain known bugs (Ethernet driver, HTTPD_USE_CUSTOM_FSDATA...) and have been upgraded since.**  
+**Some modifications applied after the cubeMX code generation are probably no longer applicable with a newer package version.**  
+
+**Warning : New problems appear with more recent versions of CubeMx using old package or in recent CubeMx and H7 Package.**  
+**And ST doesn't provide example for Nucleo using cubeMX and LwIP and doesn't update Nucleo-H743 demos when drivers change.** 
+**Changing package versions can be a laborious task.**  
+     
 With Windows Explorer, click "C:\git\ThunderballH7\ThunderballH7.ioc" to open CubeMX with the template configuration.  
 You'll certainly need to change IP, DMAs, Baudrates, Interrupts, FATFS, FREERTOS... in your application if you use this simple template as a basis.  
-The default STM32H743VIT6 Pinout and Clock configuration (400Mhz) is described in the datasheet.  
+The default STM32H743VIT6 Pinout is described in the datasheet and the CPU clock is adjust to the max (480Mhz).  
 
  - **Change IP Address Settings**
    Change the settings in CubeMX->LWIP->General Settings
   
 [![ThunderballH7_web_page](/SDK/images/ThunderballH7_STM32CubeMX.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
-
- - **Modifications applied to source code after CubeMX automatic code generation:**
-
-    🔴 **This template was created in early using "STM32CubeMX" 6.4.0 and "STM32Cube MCU Package for STM32H7" 1.9.1** 🔴  
-    🔴 **These versions are buggy (Ethernet, MPU_Config...) and have been upgraded since** 🔴  
-    🔴 **Some modifications are probably no longer applicable with a newer package version** 🔴  
-
-    - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
-       If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines (C_DEFS) of the makefile  
-    - Use origin web page by diseabling custom web page (@ line 93) in file LWIP\Target\lwipopts.h:  
-       HTTPD_USE_CUSTOM_FSDATA 0  
+     
+ - **Modifications applied to generated source code after CubeMX automatic code generation:**
+    - Use origin web page by diseabling custom web page (@ line 93) in file "LWIP\Target\lwipopts.h": **HTTPD_USE_CUSTOM_FSDATA 0**    
     - Generate "fsdata.c" by executing "./makefsdata.exe" in the folder: "Middlewares\Third_Party\LwIP\src\apps\http"  
+    - Compile the project with : make -j8 all  
+     
+ - **Todo creating a new project:**
+    - Create the CubeMx project and follow instruction from st: https://community.st.com/s/article/How-to-create-project-for-STM32H7-with-Ethernet-and-LwIP-stack-working  
+    - If it is a VScode project with a makefile, add "DATA_IN_D2_SRAM" in C defines (C_DEFS) of the makefile  
     - Exclude fsdata.c from compilation. right clic on file "fsdata.c" and then "Ressource configuration/exclude".  
-       If "fsdata.c" is hidden, right clic on project and the refresh.  
-    - Note : In the main.c file the buggy auto generate "MPU_Config" function is replaced by a working "MPU_Config_ThunderballH7" using a "goto".  
+      If "fsdata.c" is hidden, right clic on project and the refresh.  
 
 ## 6. FAQ & TROUBLESHOOTING <a name="faq"></a>
 
