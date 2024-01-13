@@ -45,7 +45,7 @@ It will be embedded into a third-party system in a harsh environment, like weara
 6.3. [RS485 does not work properly](#rs485_pb)  
 6.4. [USB Bootloader does not work properly](#bootload_pb)  
 7. [TUTORIALS](#tuto)  
-7.1. [Ethernet](#ethernet_tuto)  
+7.1. [Ethernet & Web UI](#ethernet_tuto)  
 7.2. [FreeRTOS](#freertos_tuto)  
 7.3. [CANbus](#canbus_tuto)  
 8. [DISCLAIMERS](#disclamers)  
@@ -111,7 +111,8 @@ Option : You can also install [TortoiseGit](https://tortoisegit.org/) (overlay i
     - [Cortex Debug](https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug)  
     - [MemoryView](https://marketplace.visualstudio.com/items?itemName=mcu-debug.memory-view)  
     - [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)  
-    - [~~GitLens~~](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+    - [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  
+    - [~~GitLens~~](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)  
  
 ### 3.4. Install ST STM32 Tools <a name="st_tools"></a>
  - [Install STM32CubeMX-Win](https://www.st.com/en/development-tools/stm32cubemx.html) 🔴 Select CubeMX Version 6.4.0 🔴  
@@ -372,12 +373,22 @@ We have found that performing a "Verify" before "Download" significantly improve
 
 ## 7. TUTORIALS <a name="tuto"></a>
 
-### 7.1. Ethernet <a name="ethernet_tuto"></a>  
+### 7.1. Ethernet & Web UI <a name="ethernet_tuto"></a>  
 
-- **HTML, CCS, JS:**
-  [HTML w3schools.com](https://www.w3schools.com/html/default.asp)
+- **Low size Web UI for MCU:**
+    - **HTML:**  
+      [w3schools](https://www.w3schools.com/html/default.asp)  
+    - **CSS:**  
+      [w3schools](https://www.w3schools.com/css/)   
+      [Learn CSS in 1h using VSCode and LiveServer](https://www.youtube.com/watch?v=wRNinF7YQqQ)  
+      [CSS Background Patterns](https://www.magicpattern.design/tools/css-backgrounds)  
+     - **JS:**  
+      [w3schools](https://www.w3schools.com/js/)  
+     - **SVG:**  
+     - **AVIF:**  
+      [Fabconverter: .avif image converter](https://fabconvert.com/)  
   
-- **LwIP : Web Server, TCP, UDP, Ajax, CGI, SSI:**  
+- **LwIP : Web Server, TCP, UDP, Ajax, CGI, SSI, Websocket:**  
   [controllerstech.com](https://controllerstech.com/stm32-ethernet-tutorials/)  
 
 - **Mongoose Web Server :**  
