@@ -8,7 +8,8 @@
 #ifndef INC_HTTP_CGI_SSI_H_
 #define INC_HTTP_CGI_SSI_H_
 
-void http_server_init (void);
+void httpd_task (void);
 
+extern RTC_HandleTypeDef hrtc;
 
 #endif /* INC_HTTP_CGI_SSI_H_ */

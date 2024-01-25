@@ -156,7 +156,7 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
  
-    http_server_init();             // Init Web server
+    httpd_task();                   // Init Web server
     InitCAN();                      // Init CANbus
     AutotestFram();                 // Auto Test : Test FRAM
 

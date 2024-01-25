@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Online dependencies -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.min.css">
+
+    <!-- Or embedded dependencies
+            <link rel="stylesheet" href="css/joint_min_3_7_7.css"> -->
+            
+    <link rel="stylesheet" href="css/jointjs_scada.css">
+</head>
+
+<body>
+    <!-- content -->
+    <div id="paper-container"></div>
+    <div id="power-input-container">
+        <h2 style="color: blue">Thunderball H7: JointJS Very Simple SCADA Animation</h2>
+        <p>JointJS: <a href="https://www.jointjs.com/demos/electric-generator" target="_blank">Generator Demo</a>
+           / JointJS+: <a href="https://www.jointjs.com/demos/scada" target="_blank">SCADA Demo</a></p>
+
+        <label for="power-input">Power</label>
+        <input type="range" id="power-input" min="0" max="4" step="0.1" />
+        <output id="power-output" for="power-input"></output>
+    </div>
+    <a target="_blank" href="https://www.jointjs.com"> <img id="logo" src="https://assets.codepen.io/7589991/jj-logo-red.svg" width="200" height="50"></img> </a>
+
+    <!-- Online dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.1/backbone-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/3.7.7/joint.min.js"></script>
+
+    <!-- Or embedded dependencies
+            jquery_min_3_7_1.js  : 85.4 KB
+            lodash_min_4_17_21.js: 71.9 KB
+            backbone_min_1_4_1.js: 24.6 KB
+            joint_min_3_7_7.js   : 502  KB
+            joint_min_3_7_7.css  : 45.3 KB  Total: 729.2 KB, Measured: +731 KB on the .bin with embedded cdependencies
+            
+            <script src="js/jquery_min_3_7_1.js"></script>
+            <script src="js/lodash_min_4_17_21.js"></script>
+            <script src="js/backbone_min_1_4_1.js"></script>
+            <script src="js/joint_min_3_7_7.js"></script> -->
+    <script src="js/jointjs_scada.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+/* Thanks to https://www.fiverr.com/jishaansinghal */
+
+body {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    width: 70%;
+    height: 70%;
+    margin: 10;
+    padding: 0;
+    /*background: #91CAC7;*/
+  }
+  
+  h2 {
+    font-weight: normal;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+  }
+  
+  svg {
+    transition: all 0.5s ease;
+  }
+  
+  .hotspots {
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    width: 70px;
+    height: 70px;
+    letter-spacing: 0.02em;
+    opacity: 0.65;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
+    background: lightskyblue;
+  }
+  
+  .container {
+    width: 900px;
+    margin: 10px auto;
+  }
+  
+  .first {
+    height: auto;
+    z-index: 30;
+  }
+  
+  .second {
+    z-index: 50;
+    height: auto;
+  }
+  
+  .third {
+    height: auto;
+    z-index: 1;
+  }
+  
+  #button,
+  #handle1,
+  #handle2 {
+    cursor: pointer;
+    position: relative;
+    z-index: 5000;
+  }
+  
+  #smoke circle,
+  #smoke path,
+  #paint,
+  #panda,
+  #panda2,
+  #panda3 {
+    visibility: hidden;
+  }
+  
+  @media screen and (max-width: 730px) {
+    .container {
+      width: 100% !important;
+    }
+    .sm-foot {
+      display: none;
+    }
+    svg {
+      position: relative;
+    }
+    .size {
+      display: none;
+    }
+    .first {
+      width: 100%;
+    }
+    .second {
+      width: 70%;
+      top: -90px;
+      margin-left: 70px;
+      transform: scaleX(-1) !important;
+    }
+    .third {
+      width: 60%;
+      margin-left: 70px;
+      top: -135px;
+    }
+  }
+  
+  @media screen and (min-width: 731px) {
+    .foot {
+      display: none;
+    }
+    svg {
+      position: absolute;
+    }
+    .first {
+      width: 550px;
+    }
+    .second {
+      width: 350px;
+      margin-left: 365px;
+      top: 370px !important;
+    }
+    .third {
+      width: 330px;
+      top: 514px !important;
+    }
+  }

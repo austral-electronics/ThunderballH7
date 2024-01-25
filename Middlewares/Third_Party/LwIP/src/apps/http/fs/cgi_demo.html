@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>ThunderballH7 - Home</title>
+	<title>Thunderball H7 - CGI</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/burger_menu.css">
-    <link rel="shortcut icon" href="img/AustralIcon.png">
 </head>
+
+<h1 style="color: yellow">THUNDERBALL H7- Simple CGI Demo</h1>
 
 <body>
     <nav role='navigation'>
@@ -30,14 +30,15 @@
         </ul>
         </div>
     </nav>
+    <form action="/form.cgi">
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <input type="submit" value="Submit">
+      </form> 
+    <br>
+    <a style="color: cornflowerblue" href="https://controllerstech.com/stm32-ethernet-6-2-http-webserver-cgi/">Tutorial</a>
 </body>
-<h1 style="color: yellow">THUNDERBALL H7 - Welcome</h1>
-<p>The <b>Thunderball H7 OEM</b> is a high-performance microcontroller-based SWaP-C platform : </p>
-<ul>
-    <li>Industrial with a wide temperature range, marinized IP67, miniaturized, very lightweight and low power consumption, cost-effective.</li>
-    <li>It allows you to build your next smart project rapidly using a connected platform based on the powerful STM32H743 ARM MCU running at 480Mhz.</li>
-    <li>It is the ideal solution for a hard real-time and robust systems with browser-based remote displays and operating in harsh environments.</li> 
-</ul>
-<p style="color: cyan">Click on the hamburger menu to test (or learn) various efficient Web UI technologies for resource-constrained microcontrollers.</p> 
 
 </html>

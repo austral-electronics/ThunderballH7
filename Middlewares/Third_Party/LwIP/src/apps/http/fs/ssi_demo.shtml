@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Thunderball H7 - SSI Test </title>
+<title> Thunderball H7 - SSI</title>
 <meta http-equiv="refresh" content ="1">
 </head>
 
@@ -12,7 +12,7 @@ table, th, td {
 </style>
 <body>
 
-<h2>Thunderball H7 - TEST PAGE FOR SSI</h2>
+<h1 style="color: blue">Thunderball H7 - Simple SSI demo</h1>
 
 <table style="width:100%">
   <tr>
@@ -28,7 +28,8 @@ table, th, td {
 </table>
 
 <p>This page refreshes variables every 1 second.</p>
-<a href="https://controllerstech.com/stm32-ethernet-6-1-http-webserver-ssi">Link to SSI test tutorial</a>
+<br>
+<a href="https://controllerstech.com/stm32-ethernet-6-1-http-webserver-ssi">Tutorial</a>
 
 </body>
 </html>

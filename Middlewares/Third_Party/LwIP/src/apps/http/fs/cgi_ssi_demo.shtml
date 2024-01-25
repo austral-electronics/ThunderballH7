@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta http-equiv="refresh" content ="10">
+		<link rel="stylesheet" type="text/css" href="css/siimple.min.css">
+		<link rel="stylesheet" type="text/css" href="css/navbar_menu.css">
+		<link rel="shortcut icon" href="img/AustralIcon.png">
+		<title>ThunderballH7 - CGI & SSI</title>
+	</head>
+	<body>
+		<ul class="navbar">
+            <li><a href="/">Home</a></li>
+			<li><a class="active" href="/cgi_ssi_demo.shtml">CGI & SSI</a></li>
+			<!-- <li><a href="/websockets.html">WebSockets</a></li> -->
+			<li><a href="/about.html">About</a></li>
+		</ul>
+
+		<div class="grid main">
+			<h1 style="color: blue">THUNDERBALL H7 - CGI and SSI demo</h1>
+
+			<div class="alert alert-done">HTTP Server is up and running.</div>
+
+			<p>HTTP server with CGI and SSI support. The switch will allow you to test CGI handler and turn
+			the LED ON/OFF.</p>
+            <p>Similar to the "Websockets" page but for low frequency updates. It also gives you a "navbar" menu template.</p>
+
+			<div class="cover" align="center">
+				<div class="onoffswitch">
+					<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="led-switch" onclick="gpio();">
+					<label class="onoffswitch-label" for="led-switch">
+						<span class="onoffswitch-inner"></span>
+						<span class="onoffswitch-switch"></span>
+					</label>
+				</div>
+			</div>
+
+			<h1>Server Status</h1>
+			<table class="table table-striped">
+				<tr>
+					<td><b>Uptime:</b></td>
+					<td><!--#uptime--></td>
+				</tr>
+				<tr>
+					<td><b>Free heap:</b></td>
+					<td><!--#heap--> bytes</td>
+				</tr>
+				<tr>
+					<td><b>LED state:</b></td>
+					<td id="ledState"><!--#led--></td>
+				</tr>
+			</table>
+
+			<h1>How it works</h1>
+            <p> This page is refreshed every 10 seconds</p>
+			<p> SSI : Each time the server detects a tag of the form <code>&lt;!--#name--&gt;</code> in a .shtml, .ssi or .shtm file
+				where <code>name</code> appears as one of the tags supplied to <code>ssi_handler</code>,
+				an insert string <code>pcInsert</code>is appended after the tag string in file and sent back to the client.</p>
+			<p> A CGI handler function is called each time the server is asked for a file
+				whose name was previously registered as a CGI function using a call to <code>gpio_cgi_handler</code>.
+				This function allows you to access the parameters provided along with the URL.</p>
+            <br>
+            <a href="https://lujji.github.io/blog/esp-httpd/">Tutorial</a>
+		</div>
+
+		<script>
+			window.onload = function () {
+				var ls = document.getElementById('ledState').innerHTML;
+				ls = ls.split(/-->/).pop().trim();
+				document.getElementById('led-switch').checked = (ls == 'On');
+			};
+			function gpio() {
+				if (document.getElementById('led-switch').checked)
+					window.location.href = 'gpio?off=128';
+				else
+					window.location.href = 'gpio?on=128';
+			};
+		</script>
+	</body>
+</html>
