@@ -37,18 +37,19 @@ It will be embedded into a third-party system in a harsh environment, like weara
 4.4. [Compile the application](#compile)  
 4.5. [Debug the application using the ST-LINK/V2](#debug)  
 4.6. [Deploy an image using the USB Bootloader](#bootload)  
-4.7. [How to test a product with this Autotest](#autotest)  
-5. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
-6. [FAQ & TROUBLESHOOTING](#faq)  
+4.7. [How to test Ethernet & Web UI Demos](#webui)  
+4.8. [How to test a product with this Autotest](#autotest)  
+6. [MODIFY THE DEVICE CONFIGURATION WITH STM32CUBEMX](#cubemx)  
+7. [FAQ & TROUBLESHOOTING](#faq)  
 6.1. [Forum](#forum)  
 6.2. [Ethernet does not work properly](#ethernet_pb)  
 6.3. [RS485 does not work properly](#rs485_pb)  
 6.4. [USB Bootloader does not work properly](#bootload_pb)  
-7. [TUTORIALS](#tuto)  
+8. [TUTORIALS](#tuto)  
 7.1. [Ethernet & Web UI](#ethernet_tuto)  
 7.2. [FreeRTOS](#freertos_tuto)  
 7.3. [CANbus](#canbus_tuto)  
-8. [DISCLAIMERS](#disclamers)  
+9. [DISCLAIMERS](#disclamers)  
 
 ## 1. DATASHEETS <a name="hardware"></a>
 [ThunderballH7 Hardware specifications and installation guide](https://github.com/austral-electronics/ThunderballH7/tree/main/SDK/doc/Thunderball_H7_OEM_03_Datasheet.pdf)  
@@ -257,16 +258,26 @@ This procedure enables on-site software updates for prototypes and small series 
     - Flash with "Download"  
 - Unplug the USB cable, an power up the supply.  
 
-### 4.7. How to test a product with this Autotest <a name="autotest"></a>
- - **Test Ethernet**  
+### 4.7. How to test Ethernet & Web UI Demos<a name="webui"></a>  
 Connect the ThunderballH7 to an ethernet switch an power on
 Open a windows/VSCode terminal and test the ping : PING 192.168.100.222  
-Then open a very simple web pages at 192.168.100.222 with any browser, you will see a menu with 3 tabs:
-    - A static page  
-    - A CGI page for your settings  
-    - A SSI dynamic page to display datas  
-  
-[![ThunderballH7_web_page](/SDK/images/ThunderballH7_web_page.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+Then open a very simple web pages at 192.168.100.222 with any browser, you will see a web page with:  
+    - **A static page and a "Burger" Menu demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_home.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A .AVIF Image demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_images.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A very simple CGI demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_CGI.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A very simple SSI dynamic page demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_SSI.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A CGI + SSI Page with a "navbar" Menu demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_CGI_SSI.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A animated SVG+GASP SCADA Demo**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_SVG_Scada.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+    - **A simple JointJS SCADA  Demo (Try also the Joint JS Plus link)**
+      [![ThunderballH7_web_page](/SDK/images/ThunderballH7_JointJS.png)](https://github.com/austral-electronics/ThunderballH7/edit/main/README.md)  
+
+### 4.8. How to test a product with this Autotest<a name="autotest"></a>  
 
  - **Test COM1 RX & FRAM**  
     - Connect COM1 of the thunderballH7 to a PC using a USB <->RS232 adapter  
