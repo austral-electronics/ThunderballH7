@@ -157,7 +157,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
  
     httpd_task();                   // Init Web server
-    InitCAN();                      // Init CANbus
+    InitCAN1();                     // Init CANbus1
+    InitCAN2();                     // Init CANbus2
     AutotestFram();                 // Auto Test : Test FRAM
 
   /* USER CODE END 2 */

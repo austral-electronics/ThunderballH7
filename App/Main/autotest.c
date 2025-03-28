@@ -13,7 +13,7 @@ uint8_t Rx_data[10];  //  creating a buffer of 10 bytes
 
 // USE :open a console on COM1 at 115200 bauds with putty to interact with the stdio flow of this autotest
 void AutotestFram() {
-    printf("\n\rThunderball H7 - Very simple autotest\n\r");
+    printf("\n\rThunderball H7 - Very simple autotest - !!! Not compatible with PCB <=REV03 !!!!\n\r");
 
     FramInit(hspi1, SPI1_CS_GPIO_Port, SPI1_CS_Pin);
 
@@ -45,7 +45,7 @@ void AutotestFram() {
     else printf("!!!! Error !!!!\n\r");
 
     //HAL_Delay(100);
-    printf("\n\rIf you have FRAM errors, verify the Hardware revision, the main branch is for REV04 PCB\n\r");
+    printf("\n\rIf you have FRAM errors, verify the PCB revision, the main branch is for REV04 PCB\n\r");
 
     printf("\n\rPress 'space' in the console to test serials, 'b' to jump to the bootloader\n\r");
 }
@@ -119,32 +119,34 @@ void AutotestPooling(void) {
                 }
             } else printf("TX on COM3, RX on COM4 !!!!Error !!!!\n\r");
 
-            // AUTOTEST : TX on COM4 (huart5) , RX on COM5 (huart2)
-            msg = "4";
+            // AUTOTEST : TX on COM4 (huart5) , RX on COM2 (huart3)
+             msg = "4";
+            HAL_UART_Receive(&huart3, Rx_data, 10, 0);
+             HAL_UART_Transmit(&huart5, (uint8_t*)msg, strlen(msg), 0xFFFF);
+            if (HAL_UART_Receive(&huart3, Rx_data, 1, 20) == HAL_OK) {
+                 if (Rx_data[0]=='4') printf("TX on COM4, RX on COM2 OK\n\r");
+                    else  {
+                        __HAL_UART_CLEAR_OREFLAG(&huart3);
+                        printf("TX on COM4, RX on COM2 !!!!Error !!!!\n\r");
+                    }
+            } else printf("TX on COM4, RX on COM2 !!!!Error !!!!\n\r");
+
+            // AUTOTEST : Loop on COM5 (huart2)
+            msg = "5";
             HAL_UART_Receive(&huart2, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart5, (uint8_t*)msg, strlen(msg), 0xFFFF);
+            HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
 	        if (HAL_UART_Receive(&huart2, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='4') printf("TX on COM4, RX on COM5 OK\n\r");
+		        if (Rx_data[0]=='5') printf("Loop on COM5 OK\n\r");
                 else  {
                     __HAL_UART_CLEAR_OREFLAG(&huart2);
-                    printf("TX on COM4, RX on COM5 !!!!Error !!!!\n\r");
+                    printf("Loop on COM5 !!!!Error !!!!\n\r");
                 }
-            } else printf("TX on COM4, RX on COM5 !!!!Error !!!!\n\r");
+            } else printf("Loop on COM5 !!!!Error !!!!\n\r");
 
-            // AUTOTEST : TX on COM5 (huart5), RX on COM2 (huart3)
-            msg = "5";
-            HAL_UART_Receive(&huart3, Rx_data, 10, 0);
-            HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
-	        if (HAL_UART_Receive(&huart3, Rx_data, 1, 20) == HAL_OK) {
-		        if (Rx_data[0]=='5') printf("TX on COM5, RX on COM2 OK\n\r");
-                else  {
-                    __HAL_UART_CLEAR_OREFLAG(&huart3);
-                    printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
-                }
-            } else printf("TX on COM5, RX on COM2 !!!!Error !!!!\n\r");
-
-            // AUTOTEST : Send a CANbus sentence
+            // AUTOTEST : Send a CANbus sentence on CAN1
             TransmitCAN_Test(&hfdcan1);
+            // AUTOTEST : Send a CANbus sentence on CAN2
+            TransmitCAN_Test(&hfdcan2);
         }
     }
 }

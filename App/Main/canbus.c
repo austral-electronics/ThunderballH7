@@ -61,9 +61,9 @@ static void MX_FDCAN1_Init2(void) {
 }
 #endif
 
-//------- Init CANbus Mode ---------
+//------- Init CANbus1 Mode ---------
 
-bool InitCAN(void) {
+bool InitCAN1(void) {
     #ifdef BAUDRATE_TEST
         MX_FDCAN1_Init2();        // To test other config than classic mode at 250KB
     #endif
@@ -84,7 +84,30 @@ bool InitCAN(void) {
     return true;
 }
 
-//------- Test CANbus TX : Send an NMEA2000 Vessel Heading sentence @ 250KB -------
+//------- Init CANbus2 Mode ---------
+
+bool InitCAN2(void) {
+    #ifdef BAUDRATE_TEST
+        MX_FDCAN1_Init2();        // To test other config than classic mode at 250KB
+    #endif
+
+    if(HAL_FDCAN_Start(&hfdcan2)!= HAL_OK) {
+        return false;
+    }
+    if (HAL_FDCAN_ActivateNotification(&hfdcan2, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) {
+        return false;
+    }
+    TxHeader.IdType = FDCAN_EXTENDED_ID;
+    TxHeader.TxFrameType = FDCAN_DATA_FRAME;
+    TxHeader.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+    TxHeader.BitRateSwitch = FDCAN_BRS_OFF;
+    TxHeader.FDFormat = FDCAN_CLASSIC_CAN;
+    TxHeader.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+    TxHeader.MessageMarker = 0;
+    return true;
+}
+
+//------- Test CANbus1 TX : Send an NMEA2000 Vessel Heading sentence @ 250KB -------
 
 bool TransmitCAN_Test(FDCAN_HandleTypeDef *hfdcan) {
     TxData[0]=0x80;			// Vessel Heading data low  : 343.23 Degree Mag
@@ -104,7 +127,8 @@ bool TransmitCAN_Test(FDCAN_HandleTypeDef *hfdcan) {
     return true;
 }
 
-//------ Test CANbus RX : Toggle LED --------
+
+//------ Test CANbus 1 or 2 RX : Toggle LED --------
 
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
     if((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
