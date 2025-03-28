@@ -45,6 +45,7 @@ void AutotestFram() {
     else printf("!!!! Error !!!!\n\r");
 
     //HAL_Delay(100);
+    printf("\n\rIf you have FRAM errors, verify the Hardware revision, the main branch is for REV04 PCB\n\r");
 
     printf("\n\rPress 'space' in the console to test serials, 'b' to jump to the bootloader\n\r");
 }
