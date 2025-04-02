@@ -239,6 +239,8 @@ void HAL_FDCAN_MspInit(FDCAN_HandleTypeDef* hfdcan)
     GPIO_InitStruct.Alternate = GPIO_AF9_FDCAN2;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+    HAL_I2CEx_EnableFastModePlus(SYSCFG_PMCR_I2C_PB6_FMP);
+
     /* FDCAN2 interrupt Init */
     HAL_NVIC_SetPriority(FDCAN2_IT0_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(FDCAN2_IT0_IRQn);

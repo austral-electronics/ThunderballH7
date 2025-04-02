@@ -145,6 +145,7 @@ void AutotestPooling(void) {
 
             // AUTOTEST : Send a CANbus sentence on CAN1
             TransmitCAN_Test(&hfdcan1);
+            HAL_Delay(10);          // !!!!! TODO : Pb MessageRAMOffset, Why i need this tempo !!!!!
             // AUTOTEST : Send a CANbus sentence on CAN2
             TransmitCAN_Test(&hfdcan2);
         }

@@ -89,8 +89,8 @@
 #define LWIP_HTTPD_CGI 1
 /*----- Default Value for LWIP_HTTPD_SSI: 0 ---*/
 #define LWIP_HTTPD_SSI 1
-/*----- Value in opt.h for HTTPD_USE_CUSTOM_FSDATA: 0 -----*/
-// #define HTTPD_USE_CUSTOM_FSDATA 1
+/*----- Value in opt.h for HTTPD_USE_CUSTOM_FSDATA: 1 -----*/
+#define HTTPD_USE_CUSTOM_FSDATA 0
 /*----- Value in opt.h for LWIP_STATS: 1 -----*/
 #define LWIP_STATS 0
 /*----- Value in opt.h for CHECKSUM_GEN_IP: 1 -----*/
